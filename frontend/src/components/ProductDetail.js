@@ -70,7 +70,7 @@ const ProductDetail = ({ onAddToCart }) => {
 
   if (loading) {
     return (
-      <div style={{ paddingTop: '100px', minHeight: '100vh' }}>
+      <div className="page-with-banner" style={{ minHeight: '100vh' }}>
         <div className="loading">
           <div className="spinner"></div>
         </div>
