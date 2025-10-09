@@ -14,7 +14,7 @@ const Cart = ({ cart, onUpdateItem, onRemoveItem, sessionId }) => {
 
   if (cart.length === 0) {
     return (
-      <div style={{ paddingTop: '100px', minHeight: '100vh' }}>
+      <div className="page-with-banner" style={{ minHeight: '100vh' }}>
         <div className="container">
           <div style={{ 
             textAlign: 'center', 
