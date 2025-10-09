@@ -732,12 +732,18 @@ const Checkout = ({ cart, sessionId }) => {
                     }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                         <Smartphone size={20} color={selectedPayment === 'apple' ? 'var(--nx-green)' : 'var(--muted)'} />
-                        <span style={{ 
-                          fontWeight: '600',
-                          color: selectedPayment === 'apple' ? 'var(--nx-green)' : 'var(--fg)'
-                        }}>
-                          Apple Pay
-                        </span>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                          <span style={{ 
+                            fontWeight: '600',
+                            color: selectedPayment === 'apple' ? 'var(--nx-green)' : 'var(--fg)'
+                          }}>
+                            Apple Pay
+                          </span>
+                          <div className="payment-logo apple-pay-logo">
+                            <span className="apple-icon">🍎</span>
+                            <span className="apple-pay-text">Pay</span>
+                          </div>
+                        </div>
                       </div>
                       <div style={{ 
                         width: '20px',
