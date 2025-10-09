@@ -9,6 +9,7 @@ import Cart from './components/Cart';
 import Checkout from './components/Checkout';
 import About from './components/About';
 import Contact from './components/Contact';
+import DiscountBanner from './components/DiscountBanner';
 import { Toaster } from './components/ui/sonner';
 
 function App() {
