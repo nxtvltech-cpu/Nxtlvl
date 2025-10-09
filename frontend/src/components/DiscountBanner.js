@@ -22,10 +22,6 @@ const DiscountBanner = () => {
           ))}
         </div>
       </div>
-      
-      <div className="discount-close" onClick={(e) => e.target.parentElement.style.display = 'none'}>
-        ×
-      </div>
     </div>
   );
 };
