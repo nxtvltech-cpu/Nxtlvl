@@ -10,6 +10,7 @@ import Checkout from './components/Checkout';
 import About from './components/About';
 import Contact from './components/Contact';
 import DiscountBanner from './components/DiscountBanner';
+import AnimatedBackground from './components/AnimatedBackground';
 import { Toaster } from './components/ui/sonner';
 
 function App() {
