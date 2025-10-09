@@ -654,10 +654,6 @@ const Checkout = ({ cart, sessionId }) => {
                               <div className="mc-circle mc-red"></div>
                               <div className="mc-circle mc-yellow"></div>
                             </div>
-                            {/* American Express Logo */}
-                            <div className="payment-logo amex-logo">AMEX</div>
-                            {/* Discover Logo */}
-                            <div className="payment-logo discover-logo">DISC</div>
                           </div>
                         </div>
                       </div>
