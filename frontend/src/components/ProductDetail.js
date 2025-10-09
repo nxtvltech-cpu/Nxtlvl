@@ -416,6 +416,9 @@ const ProductDetail = ({ onAddToCart }) => {
           </div>
         )}
 
+        {/* Product Reviews */}
+        <ProductReviews productId={product.id} productTitle={product.title} />
+
         {/* Related Products */}
         {relatedProducts.length > 0 && (
           <div>
