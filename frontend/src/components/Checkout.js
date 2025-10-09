@@ -280,7 +280,7 @@ const Checkout = ({ cart, sessionId }) => {
   }
 
   return (
-    <div style={{ paddingTop: '100px', minHeight: '100vh' }}>
+    <div className="page-with-banner" style={{ minHeight: '100vh' }}>
       <div className="container">
         <div style={{ 
           display: 'grid',
