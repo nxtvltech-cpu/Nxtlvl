@@ -699,6 +699,46 @@ body {
   font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 0.75rem;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+
+/* Animated Price Underline */
+.product-price::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    var(--nx-green) 20%, 
+    var(--nx-green) 80%, 
+    transparent 100%);
+  animation: priceGlow 2s ease-in-out infinite;
+  border-radius: 2px;
+}
+
+.product-price:hover::after {
+  animation-duration: 1s;
+  width: 80%;
+}
+
+@keyframes priceGlow {
+  0%, 100% {
+    opacity: 0.4;
+    box-shadow: 0 0 4px var(--nx-green);
+    transform: translateX(-50%) scaleX(0.8);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 12px var(--nx-green), 0 0 20px rgba(0, 255, 133, 0.3);
+    transform: translateX(-50%) scaleX(1);
+  }
 }
 
 .product-benefit {
