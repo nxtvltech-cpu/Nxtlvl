@@ -416,6 +416,142 @@ body {
   }
 }
 
+/* Dynamic Light Beams */
+.light-beam {
+  position: absolute;
+  background: linear-gradient(45deg, 
+    transparent 0%, 
+    rgba(0, 255, 133, 0.1) 30%, 
+    rgba(0, 255, 133, 0.3) 50%, 
+    rgba(0, 255, 133, 0.1) 70%, 
+    transparent 100%);
+  width: 2px;
+  height: 100%;
+  animation: rotateBeam 10s linear infinite;
+  transform-origin: bottom center;
+  pointer-events: none;
+}
+
+.light-beam-1 {
+  left: 25%;
+  animation-delay: 0s;
+}
+
+.light-beam-2 {
+  right: 30%;
+  background: linear-gradient(45deg, 
+    transparent 0%, 
+    rgba(138, 43, 226, 0.1) 30%, 
+    rgba(138, 43, 226, 0.3) 50%, 
+    rgba(138, 43, 226, 0.1) 70%, 
+    transparent 100%);
+  animation-delay: 5s;
+}
+
+/* Floating Energy Dots */
+.energy-dot {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--nx-green);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--nx-green);
+  animation: energyFloat 8s ease-in-out infinite;
+  opacity: 0.8;
+}
+
+.energy-dot:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+.energy-dot:nth-child(2) { top: 30%; right: 15%; animation-delay: 1s; }
+.energy-dot:nth-child(3) { bottom: 40%; left: 20%; animation-delay: 2s; }
+.energy-dot:nth-child(4) { bottom: 30%; right: 25%; animation-delay: 3s; }
+.energy-dot:nth-child(5) { top: 50%; left: 50%; animation-delay: 4s; }
+
+/* Neon Circuit Lines */
+.circuit-line {
+  position: absolute;
+  background: var(--nx-green);
+  opacity: 0.2;
+  animation: circuitPulse 4s ease-in-out infinite;
+}
+
+.circuit-line-1 {
+  width: 100px;
+  height: 1px;
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.circuit-line-2 {
+  width: 1px;
+  height: 80px;
+  top: 30%;
+  right: 20%;
+  animation-delay: 1s;
+}
+
+.circuit-line-3 {
+  width: 120px;
+  height: 1px;
+  bottom: 25%;
+  left: 30%;
+  animation-delay: 2s;
+}
+
+@keyframes rotateBeam {
+  0% {
+    transform: rotate(0deg);
+    opacity: 0.3;
+  }
+  50% {
+    transform: rotate(180deg);
+    opacity: 0.7;
+  }
+  100% {
+    transform: rotate(360deg);
+    opacity: 0.3;
+  }
+}
+
+@keyframes energyFloat {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(20px, -10px) scale(1.2);
+  }
+  50% {
+    transform: translate(-10px, -20px) scale(0.8);
+  }
+  75% {
+    transform: translate(-20px, 10px) scale(1.1);
+  }
+}
+
+@keyframes circuitPulse {
+  0%, 100% {
+    opacity: 0.2;
+    box-shadow: 0 0 0 var(--nx-green);
+  }
+  50% {
+    opacity: 0.8;
+    box-shadow: 0 0 20px var(--nx-green);
+  }
+}
+
+/* Interactive Light Response */
+.hero:hover .light-orb {
+  animation-duration: 4s;
+}
+
+.hero:hover .particle {
+  animation-duration: 10s;
+}
+
+.hero:hover .scan-line {
+  animation-duration: 6s;
+}
+
 /* Reduce motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
   .hero::before,
@@ -423,12 +559,20 @@ body {
   .particle,
   .light-orb,
   .scan-line,
-  .hero-grid {
+  .hero-grid,
+  .light-beam,
+  .energy-dot,
+  .circuit-line {
     animation: none;
   }
   
   .hero::after {
     opacity: 0.3;
+  }
+  
+  .light-orb,
+  .energy-dot {
+    opacity: 0.2;
   }
 }
 
