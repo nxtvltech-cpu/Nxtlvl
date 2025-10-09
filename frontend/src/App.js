@@ -94,6 +94,7 @@ function App() {
 
   return (
     <div className="App">
+      <AnimatedBackground />
       <Router>
         <DiscountBanner />
         <Header cartItemCount={getCartItemCount()} />
