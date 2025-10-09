@@ -94,6 +94,7 @@ function App() {
   return (
     <div className="App">
       <Router>
+        <DiscountBanner />
         <Header cartItemCount={getCartItemCount()} />
         <Routes>
           <Route path="/" element={<Home />} />
