@@ -735,12 +735,12 @@ body {
 @keyframes priceGlow {
   0%, 100% {
     opacity: 0.4;
-    box-shadow: 0 0 4px var(--nx-green);
+    box-shadow: 0 2px 4px var(--nx-green);  /* Shadow only below */
     transform: translateX(-50%) scaleX(0.8);
   }
   50% {
     opacity: 1;
-    box-shadow: 0 0 12px var(--nx-green), 0 0 20px rgba(0, 255, 133, 0.3);
+    box-shadow: 0 2px 12px var(--nx-green), 0 4px 20px rgba(0, 255, 133, 0.3);  /* Shadows only below */
     transform: translateX(-50%) scaleX(1);
   }
 }
