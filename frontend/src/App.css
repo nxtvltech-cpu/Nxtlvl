@@ -1247,14 +1247,6 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Google Pay Logo (bonus) */
-.google-pay-logo {
-  background: #4285f4;
-  color: white;
-  font-size: 0.65rem;
-  min-width: 35px;
-}
-
 /* Security badges for payment methods */
 .payment-security {
   display: flex;
