@@ -91,17 +91,19 @@ const Home = () => {
                       </span>
                     )}
                   </div>
-                  <p style={{ 
-                    color: 'var(--nx-green)', 
-                    fontSize: '0.9rem',
-                    marginBottom: '1rem'
-                  }}>
+                  <p className="product-benefit">
                     {product.short_benefit}
                   </p>
                   <Link 
                     to={`/product/${product.id}`} 
                     className="btn-secondary"
-                    style={{ width: '100%' }}
+                    style={{ 
+                      width: '100%',
+                      position: 'absolute',
+                      bottom: '1.5rem',
+                      left: '1.5rem',
+                      right: '1.5rem'
+                    }}
                   >
                     View Details
                   </Link>
