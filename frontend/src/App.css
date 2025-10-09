@@ -705,11 +705,11 @@ body {
   text-align: center;
 }
 
-/* Animated Price Underline */
+/* Animated Price Underline - BOTTOM ONLY */
 .product-price::after {
   content: '';
   position: absolute;
-  bottom: -4px;
+  bottom: -6px;  /* Positioned only below the price */
   left: 50%;
   transform: translateX(-50%);
   width: 60%;
@@ -721,11 +721,15 @@ body {
     transparent 100%);
   animation: priceGlow 2s ease-in-out infinite;
   border-radius: 2px;
+  /* Ensure no top effects */
+  top: auto;
+  border-top: none;
 }
 
 .product-price:hover::after {
   animation-duration: 1s;
   width: 80%;
+  bottom: -8px;  /* Slightly lower on hover for emphasis */
 }
 
 @keyframes priceGlow {
