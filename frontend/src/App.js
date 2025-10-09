@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Shop from './components/Shop';
 import ProductDetail from './components/ProductDetail';
 import Cart from './components/Cart';
+import Checkout from './components/Checkout';
 import About from './components/About';
 import Contact from './components/Contact';
 import { Toaster } from './components/ui/sonner';
