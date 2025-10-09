@@ -828,6 +828,333 @@ body {
   padding-top: 140px; /* 40px banner + 100px header */
 }
 
+/* Global Animated Background */
+.global-animated-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: -1;
+  background: var(--gradient-primary);
+  overflow: hidden;
+}
+
+/* Global Grid Overlay */
+.global-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(0, 255, 133, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 133, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: globalGridShift 25s linear infinite;
+  opacity: 0.3;
+}
+
+/* Global Scanning Light Effects */
+.global-scan-line {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(0, 255, 133, 0.6) 50%, 
+    transparent 100%);
+  top: 30%;
+  left: -100%;
+  animation: globalScanLight 12s linear infinite;
+  box-shadow: 0 0 15px var(--nx-green);
+}
+
+.global-scan-line-2 {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(138, 43, 226, 0.5) 50%, 
+    transparent 100%);
+  top: 70%;
+  left: -100%;
+  animation: globalScanLight 15s linear infinite;
+  animation-delay: 7s;
+  box-shadow: 0 0 12px var(--nx-purple);
+}
+
+/* Global Light Beams */
+.global-light-beam {
+  position: absolute;
+  background: linear-gradient(45deg, 
+    transparent 0%, 
+    rgba(0, 255, 133, 0.08) 30%, 
+    rgba(0, 255, 133, 0.15) 50%, 
+    rgba(0, 255, 133, 0.08) 70%, 
+    transparent 100%);
+  width: 1px;
+  height: 100%;
+  animation: globalRotateBeam 18s linear infinite;
+  transform-origin: bottom center;
+}
+
+.global-light-beam-1 {
+  left: 15%;
+  animation-delay: 0s;
+}
+
+.global-light-beam-2 {
+  right: 20%;
+  background: linear-gradient(45deg, 
+    transparent 0%, 
+    rgba(138, 43, 226, 0.08) 30%, 
+    rgba(138, 43, 226, 0.15) 50%, 
+    rgba(138, 43, 226, 0.08) 70%, 
+    transparent 100%);
+  animation-delay: 9s;
+}
+
+/* Global Moving Particles */
+.global-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+.global-particle {
+  position: absolute;
+  width: 1.5px;
+  height: 1.5px;
+  background: var(--nx-green);
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: globalParticleFloat 20s linear infinite;
+  box-shadow: 0 0 4px var(--nx-green);
+}
+
+.global-particle:nth-child(1) { left: 5%; animation-delay: 0s; }
+.global-particle:nth-child(2) { left: 15%; animation-delay: 3s; }
+.global-particle:nth-child(3) { left: 25%; animation-delay: 6s; }
+.global-particle:nth-child(4) { left: 35%; animation-delay: 9s; }
+.global-particle:nth-child(5) { left: 45%; animation-delay: 12s; }
+.global-particle:nth-child(6) { left: 55%; animation-delay: 15s; }
+.global-particle:nth-child(7) { left: 65%; animation-delay: 18s; }
+.global-particle:nth-child(8) { left: 75%; animation-delay: 21s; }
+.global-particle:nth-child(9) { left: 85%; animation-delay: 24s; }
+.global-particle:nth-child(10) { left: 95%; animation-delay: 27s; }
+.global-particle:nth-child(11) { left: 10%; animation-delay: 30s; }
+.global-particle:nth-child(12) { left: 90%; animation-delay: 33s; }
+
+/* Global Pulsing Light Orbs */
+.global-light-orb {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--nx-green) 0%, transparent 70%);
+  opacity: 0.2;
+  animation: globalPulseGlow 8s ease-in-out infinite;
+}
+
+.global-light-orb-1 {
+  width: 120px;
+  height: 120px;
+  top: 15%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.global-light-orb-2 {
+  width: 80px;
+  height: 80px;
+  top: 60%;
+  right: 15%;
+  background: radial-gradient(circle, var(--nx-purple) 0%, transparent 70%);
+  animation-delay: 3s;
+}
+
+.global-light-orb-3 {
+  width: 60px;
+  height: 60px;
+  bottom: 25%;
+  left: 25%;
+  animation-delay: 6s;
+}
+
+.global-light-orb-4 {
+  width: 100px;
+  height: 100px;
+  top: 40%;
+  right: 40%;
+  background: radial-gradient(circle, var(--nx-purple) 0%, transparent 70%);
+  animation-delay: 4s;
+}
+
+/* Global Floating Energy Dots */
+.global-energy-dot {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: var(--nx-green);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--nx-green);
+  animation: globalEnergyFloat 10s ease-in-out infinite;
+  opacity: 0.6;
+}
+
+.global-energy-dot:nth-child(1) { top: 20%; left: 20%; animation-delay: 0s; }
+.global-energy-dot:nth-child(2) { top: 25%; right: 25%; animation-delay: 2s; }
+.global-energy-dot:nth-child(3) { bottom: 35%; left: 30%; animation-delay: 4s; }
+.global-energy-dot:nth-child(4) { bottom: 25%; right: 35%; animation-delay: 6s; }
+.global-energy-dot:nth-child(5) { top: 55%; left: 60%; animation-delay: 8s; }
+.global-energy-dot:nth-child(6) { top: 35%; right: 50%; animation-delay: 1s; }
+
+/* Global Circuit Lines */
+.global-circuit-line {
+  position: absolute;
+  background: var(--nx-green);
+  opacity: 0.15;
+  animation: globalCircuitPulse 6s ease-in-out infinite;
+}
+
+.global-circuit-line-1 {
+  width: 80px;
+  height: 1px;
+  top: 25%;
+  left: 15%;
+  animation-delay: 0s;
+}
+
+.global-circuit-line-2 {
+  width: 1px;
+  height: 60px;
+  top: 35%;
+  right: 25%;
+  animation-delay: 2s;
+}
+
+.global-circuit-line-3 {
+  width: 100px;
+  height: 1px;
+  bottom: 30%;
+  left: 40%;
+  animation-delay: 4s;
+}
+
+.global-circuit-line-4 {
+  width: 1px;
+  height: 40px;
+  top: 60%;
+  right: 45%;
+  animation-delay: 1s;
+}
+
+/* Global Animation Keyframes */
+@keyframes globalGridShift {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(60px, 60px);
+  }
+}
+
+@keyframes globalScanLight {
+  0% {
+    left: -100%;
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes globalRotateBeam {
+  0% {
+    transform: rotate(0deg);
+    opacity: 0.2;
+  }
+  50% {
+    transform: rotate(180deg);
+    opacity: 0.4;
+  }
+  100% {
+    transform: rotate(360deg);
+    opacity: 0.2;
+  }
+}
+
+@keyframes globalParticleFloat {
+  0% {
+    transform: translateY(100vh) translateX(0px);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) translateX(30px);
+    opacity: 0;
+  }
+}
+
+@keyframes globalPulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.2;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.4;
+  }
+}
+
+@keyframes globalEnergyFloat {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(15px, -8px) scale(1.2);
+  }
+  50% {
+    transform: translate(-8px, -15px) scale(0.9);
+  }
+  75% {
+    transform: translate(-15px, 8px) scale(1.1);
+  }
+}
+
+@keyframes globalCircuitPulse {
+  0%, 100% {
+    opacity: 0.15;
+    box-shadow: 0 0 0 var(--nx-green);
+  }
+  50% {
+    opacity: 0.6;
+    box-shadow: 0 0 15px var(--nx-green);
+  }
+}
+
+/* Ensure content is above background */
+.App {
+  position: relative;
+  z-index: 1;
+}
+
 /* Reduce motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
   .hero::before,
@@ -840,17 +1167,22 @@ body {
   .energy-dot,
   .circuit-line,
   .discount-ticker,
-  .discount-banner::before {
+  .discount-banner::before,
+  .global-grid,
+  .global-scan-line,
+  .global-scan-line-2,
+  .global-light-beam,
+  .global-particle,
+  .global-light-orb,
+  .global-energy-dot,
+  .global-circuit-line {
     animation: none;
   }
   
-  .hero::after {
-    opacity: 0.3;
-  }
-  
-  .light-orb,
-  .energy-dot {
-    opacity: 0.2;
+  .hero::after,
+  .global-light-orb,
+  .global-energy-dot {
+    opacity: 0.1;
   }
   
   .discount-ticker {
