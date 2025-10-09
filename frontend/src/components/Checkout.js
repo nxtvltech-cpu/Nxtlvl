@@ -639,12 +639,27 @@ const Checkout = ({ cart, sessionId }) => {
                     }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                         <CreditCard size={20} color={selectedPayment === 'card' ? 'var(--nx-green)' : 'var(--muted)'} />
-                        <span style={{ 
-                          fontWeight: '600',
-                          color: selectedPayment === 'card' ? 'var(--nx-green)' : 'var(--fg)'
-                        }}>
-                          Credit or Debit Card
-                        </span>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                          <span style={{ 
+                            fontWeight: '600',
+                            color: selectedPayment === 'card' ? 'var(--nx-green)' : 'var(--fg)'
+                          }}>
+                            Credit or Debit Card
+                          </span>
+                          <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                            {/* Visa Logo */}
+                            <div className="payment-logo visa-logo">VISA</div>
+                            {/* MasterCard Logo */}
+                            <div className="payment-logo mastercard-logo">
+                              <div className="mc-circle mc-red"></div>
+                              <div className="mc-circle mc-yellow"></div>
+                            </div>
+                            {/* American Express Logo */}
+                            <div className="payment-logo amex-logo">AMEX</div>
+                            {/* Discover Logo */}
+                            <div className="payment-logo discover-logo">DISC</div>
+                          </div>
+                        </div>
                       </div>
                       <div style={{ 
                         width: '20px',
