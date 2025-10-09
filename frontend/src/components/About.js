@@ -3,7 +3,7 @@ import { Zap, Target, Trophy, Users } from 'lucide-react';
 
 const About = () => {
   return (
-    <div style={{ paddingTop: '100px', minHeight: '100vh' }}>
+    <div className="page-with-banner" style={{ minHeight: '100vh' }}>
       <div className="container">
         {/* Hero Section */}
         <section style={{ 
