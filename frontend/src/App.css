@@ -348,6 +348,9 @@ body {
   opacity: 0;
   transform: translateY(10px);
   transition: all 0.2s ease;
+  background: rgba(0, 255, 133, 0.9) !important;
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--nx-green) !important;
 }
 
 /* Filters */
