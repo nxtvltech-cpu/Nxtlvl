@@ -244,18 +244,23 @@ const Cart = ({ cart, onUpdateItem, onRemoveItem, sessionId }) => {
               </div>
             </div>
 
-            <button
+            <Link 
+              to="/checkout"
               className="btn-primary"
-              onClick={handleCheckout}
               style={{ 
                 width: '100%',
                 padding: '1rem',
-                fontSize: '1.1rem'
+                fontSize: '1.1rem',
+                textDecoration: 'none',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.5rem'
               }}
             >
               Proceed to Checkout
               <ArrowRight size={20} />
-            </button>
+            </Link>
 
             <div style={{ 
               marginTop: '1.5rem',
