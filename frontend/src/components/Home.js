@@ -33,6 +33,10 @@ const Home = () => {
         <div className="hero-grid"></div>
         <div className="scan-line"></div>
         
+        {/* Light Beams */}
+        <div className="light-beam light-beam-1"></div>
+        <div className="light-beam light-beam-2"></div>
+        
         {/* Moving Particles */}
         <div className="hero-particles">
           <div className="particle"></div>
@@ -51,6 +55,18 @@ const Home = () => {
         <div className="light-orb light-orb-1"></div>
         <div className="light-orb light-orb-2"></div>
         <div className="light-orb light-orb-3"></div>
+        
+        {/* Energy Dots */}
+        <div className="energy-dot"></div>
+        <div className="energy-dot"></div>
+        <div className="energy-dot"></div>
+        <div className="energy-dot"></div>
+        <div className="energy-dot"></div>
+        
+        {/* Circuit Lines */}
+        <div className="circuit-line circuit-line-1"></div>
+        <div className="circuit-line circuit-line-2"></div>
+        <div className="circuit-line circuit-line-3"></div>
         
         <div className="hero-content">
           <h1 className="hero-logo">
