@@ -80,7 +80,7 @@ const ProductDetail = ({ onAddToCart }) => {
 
   if (!product) {
     return (
-      <div style={{ paddingTop: '100px', minHeight: '100vh' }}>
+      <div className="page-with-banner" style={{ minHeight: '100vh' }}>
         <div className="container" style={{ textAlign: 'center', padding: '4rem' }}>
           <h2>Product not found</h2>
           <Link to="/shop" className="btn-primary" style={{ marginTop: '1rem' }}>
