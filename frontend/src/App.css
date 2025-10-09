@@ -273,10 +273,14 @@ body {
   border: 1px solid transparent;
   border-radius: 12px;
   padding: 1.5rem;
+  padding-bottom: 4rem;
   text-align: center;
   transition: all 0.2s ease;
   position: relative;
   overflow: hidden;
+  min-height: 450px;
+  display: flex;
+  flex-direction: column;
 }
 
 .product-card:hover {
