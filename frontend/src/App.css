@@ -1140,6 +1140,158 @@ body {
   z-index: 1;
 }
 
+/* Payment Method Logos */
+.payment-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Visa Logo */
+.visa-logo {
+  background: linear-gradient(135deg, #1a1f71 0%, #0f4c8c 100%);
+  color: white;
+  letter-spacing: 0.5px;
+  min-width: 32px;
+}
+
+/* MasterCard Logo */
+.mastercard-logo {
+  position: relative;
+  background: #000;
+  min-width: 32px;
+  height: 20px;
+  overflow: hidden;
+}
+
+.mc-circle {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.mc-red {
+  background: #eb001b;
+  left: 2px;
+}
+
+.mc-yellow {
+  background: #f79e1b;
+  right: 2px;
+}
+
+/* American Express Logo */
+.amex-logo {
+  background: linear-gradient(135deg, #006fcf 0%, #0066cc 100%);
+  color: white;
+  font-size: 0.6rem;
+  min-width: 32px;
+}
+
+/* Discover Logo */
+.discover-logo {
+  background: linear-gradient(135deg, #ff6000 0%, #ff4500 100%);
+  color: white;
+  font-size: 0.6rem;
+  min-width: 32px;
+}
+
+/* PayPal Logo */
+.paypal-logo {
+  background: #ffffff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  min-width: 40px;
+  height: 18px;
+}
+
+.paypal-text-blue {
+  color: #003087;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.paypal-text-light {
+  color: #009cde;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+/* Apple Pay Logo */
+.apple-pay-logo {
+  background: #000;
+  color: white;
+  border-radius: 6px;
+  padding: 2px 6px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  min-width: 40px;
+  height: 18px;
+}
+
+.apple-icon {
+  font-size: 0.7rem;
+  filter: brightness(0) invert(1);
+}
+
+.apple-pay-text {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: white;
+}
+
+/* Payment logos hover effects */
+.payment-logo {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.payment-logo:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Google Pay Logo (bonus) */
+.google-pay-logo {
+  background: #4285f4;
+  color: white;
+  font-size: 0.65rem;
+  min-width: 35px;
+}
+
+/* Security badges for payment methods */
+.payment-security {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.security-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  background: rgba(0, 255, 133, 0.1);
+  border: 1px solid rgba(0, 255, 133, 0.3);
+  border-radius: 4px;
+  color: var(--nx-green);
+}
+
 /* Reduce motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
   .hero::before,
@@ -1160,7 +1312,8 @@ body {
   .global-particle,
   .global-light-orb,
   .global-energy-dot,
-  .global-circuit-line {
+  .global-circuit-line,
+  .payment-logo {
     animation: none;
   }
   
@@ -1171,6 +1324,10 @@ body {
   }
   
   .discount-ticker {
+    transform: none;
+  }
+  
+  .payment-logo:hover {
     transform: none;
   }
 }
