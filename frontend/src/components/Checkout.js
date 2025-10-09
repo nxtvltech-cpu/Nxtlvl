@@ -690,12 +690,18 @@ const Checkout = ({ cart, sessionId }) => {
                     }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                         <Wallet size={20} color={selectedPayment === 'paypal' ? 'var(--nx-green)' : 'var(--muted)'} />
-                        <span style={{ 
-                          fontWeight: '600',
-                          color: selectedPayment === 'paypal' ? 'var(--nx-green)' : 'var(--fg)'
-                        }}>
-                          PayPal
-                        </span>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                          <span style={{ 
+                            fontWeight: '600',
+                            color: selectedPayment === 'paypal' ? 'var(--nx-green)' : 'var(--fg)'
+                          }}>
+                            PayPal
+                          </span>
+                          <div className="payment-logo paypal-logo">
+                            <span className="paypal-text-blue">Pay</span>
+                            <span className="paypal-text-light">Pal</span>
+                          </div>
+                        </div>
                       </div>
                       <div style={{ 
                         width: '20px',
