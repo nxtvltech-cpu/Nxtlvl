@@ -241,7 +241,7 @@ const Shop = ({ onAddToCart }) => {
                       </span>
                     </div>
 
-                    <div className="product-price">
+                    <div className="product-price price-highlight">
                       ${product.price.toFixed(2)}
                       {product.compare_at_price && (
                         <span style={{ 
