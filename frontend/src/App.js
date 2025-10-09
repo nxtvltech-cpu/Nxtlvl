@@ -109,6 +109,15 @@ function App() {
               />
             } 
           />
+          <Route 
+            path="/checkout" 
+            element={
+              <Checkout 
+                cart={cart} 
+                sessionId={sessionId}
+              />
+            } 
+          />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
