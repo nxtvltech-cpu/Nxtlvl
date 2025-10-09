@@ -12,11 +12,6 @@ const Cart = ({ cart, onUpdateItem, onRemoveItem, sessionId }) => {
     return item.price * item.quantity;
   };
 
-  const handleCheckout = () => {
-    // This will be implemented with Stripe integration
-    toast.info('Checkout functionality coming soon!');
-  };
-
   if (cart.length === 0) {
     return (
       <div style={{ paddingTop: '100px', minHeight: '100vh' }}>
