@@ -203,7 +203,7 @@ const ProductDetail = ({ onAddToCart }) => {
               </span>
             </div>
 
-            <div style={{ 
+            <div className="price-large" style={{ 
               fontSize: '2rem', 
               fontWeight: '700',
               color: 'var(--nx-green)',
