@@ -797,7 +797,7 @@ body {
   50% {
     transform: scaleX(1);
     opacity: 1;
-    box-shadow: 0 0 15px var(--nx-green);
+    box-shadow: 0 2px 15px var(--nx-green);  /* Shadow only below the line */
   }
 }
 
