@@ -117,7 +117,7 @@ const Home = () => {
                   </div>
                   <h3 className="product-title">{product.title}</h3>
                   <p className="product-brand">{product.brand}</p>
-                  <div className="product-price">
+                  <div className="product-price price-highlight">
                     ${product.price.toFixed(2)}
                     {product.compare_at_price && (
                       <span style={{ 
