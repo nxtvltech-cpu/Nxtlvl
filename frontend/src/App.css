@@ -774,16 +774,17 @@ body {
   display: inline-block;
 }
 
-.price-checkout::before {
+/* Bottom-only pulse indicator for checkout prices */
+.price-checkout::after {
   content: '';
   position: absolute;
-  top: 50%;
-  left: -10px;
-  transform: translateY(-50%);
-  width: 6px;
-  height: 6px;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 2px;
   background: var(--nx-green);
-  border-radius: 50%;
+  border-radius: 2px;
   animation: pricePulse 1.5s ease-in-out infinite;
   box-shadow: 0 0 10px var(--nx-green);
 }
