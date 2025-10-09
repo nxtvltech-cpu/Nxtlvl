@@ -255,20 +255,12 @@ const Shop = ({ onAddToCart }) => {
                       )}
                     </div>
 
-                    <p style={{ 
-                      color: 'var(--nx-green)', 
-                      fontSize: '0.85rem',
-                      marginBottom: '1rem',
-                      textAlign: 'center'
-                    }}>
+                    <p className="product-benefit">
                       {product.short_benefit}
                     </p>
 
-                    <p style={{ 
-                      color: product.inventory > 0 ? 'var(--nx-green)' : '#ff4444',
-                      fontSize: '0.85rem',
-                      marginBottom: '1rem',
-                      textAlign: 'center'
+                    <p className="product-stock" style={{ 
+                      color: product.inventory > 0 ? 'var(--nx-green)' : '#ff4444'
                     }}>
                       {product.inventory > 0 
                         ? `${product.inventory} in stock`
