@@ -29,6 +29,29 @@ const Home = () => {
     <>
       {/* Hero Section */}
       <section className="hero">
+        {/* Animated Background Elements */}
+        <div className="hero-grid"></div>
+        <div className="scan-line"></div>
+        
+        {/* Moving Particles */}
+        <div className="hero-particles">
+          <div className="particle"></div>
+          <div className="particle"></div>
+          <div className="particle"></div>
+          <div className="particle"></div>
+          <div className="particle"></div>
+          <div className="particle"></div>
+          <div className="particle"></div>
+          <div className="particle"></div>
+          <div className="particle"></div>
+          <div className="particle"></div>
+        </div>
+        
+        {/* Light Orbs */}
+        <div className="light-orb light-orb-1"></div>
+        <div className="light-orb light-orb-2"></div>
+        <div className="light-orb light-orb-3"></div>
+        
         <div className="hero-content">
           <h1 className="hero-logo">
             <span className="nxt">NXT</span>
