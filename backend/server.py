@@ -170,6 +170,47 @@ def verify_password(plain_password, hashed_password):
 def get_password_hash(password):
     return pwd_context.hash(password)
 
+async def generate_seo_content(product_title: str, category: str, brand: str, description: str):
+    """Generate SEO title and meta description using LLM"""
+    try:
+        from emergentintegrations.llm.chat import LlmChat, UserMessage
+        from dotenv import load_dotenv
+        
+        load_dotenv()
+        
+        chat = LlmChat(
+            api_key=os.environ.get('EMERGENT_LLM_KEY'),
+            session_id=f"seo-{str(uuid.uuid4())}",
+            system_message="You are an SEO expert for gaming e-commerce. Generate compelling SEO titles and meta descriptions that drive clicks and conversions."
+        ).with_model("openai", "gpt-4o-mini")
+        
+        prompt = f"""
+        Generate SEO content for this gaming product:
+        - Product: {product_title}
+        - Category: {category}
+        - Brand: {brand}
+        - Description: {description}
+        
+        Return ONLY a JSON response with:
+        {{
+            "seo_title": "60-character SEO title with keywords",
+            "seo_description": "155-character meta description that drives clicks"
+        }}
+        """
+        
+        user_message = UserMessage(text=prompt)
+        response = await chat.send_message(user_message)
+        
+        # Parse JSON response
+        import json
+        seo_data = json.loads(response)
+        return seo_data["seo_title"], seo_data["seo_description"]
+    except Exception as e:
+        # Fallback if LLM fails
+        seo_title = f"{brand} {product_title} - Gaming {category} | NXTLVL"
+        seo_description = f"Shop the {brand} {product_title} at NXTLVL. Premium gaming {category.lower()} with fast shipping and competitive prices."
+        return seo_title, seo_description
+
 async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)):
     try:
         payload = jwt.decode(credentials.credentials, SECRET_KEY, algorithms=[ALGORITHM])
