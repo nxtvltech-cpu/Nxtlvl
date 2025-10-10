@@ -71,6 +71,13 @@ class ProductCreate(BaseModel):
     description: str
     specs: Dict[str, Any] = {}
     compatibility: List[str] = []
+    # SEO fields
+    seo_title: Optional[str] = None
+    seo_description: Optional[str] = None
+    tags: List[str] = []
+    # Variants and bundles
+    variants: List[Dict[str, Any]] = []
+    frequently_bought_together: List[str] = []
     published: bool = True
 
 class Category(BaseModel):
