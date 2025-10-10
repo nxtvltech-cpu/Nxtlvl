@@ -132,8 +132,12 @@ frontend:
 metadata:
   created_by: "testing_agent"
   version: "1.0"
-  test_sequence: 0
+  test_sequence: 1
   run_ui: false
+  last_tested: "2025-01-27"
+  total_tests_run: 31
+  tests_passed: 31
+  tests_failed: 0
 
 test_plan:
   current_focus: []
