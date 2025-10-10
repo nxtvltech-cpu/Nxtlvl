@@ -500,6 +500,12 @@ async def startup_event():
         {"name": "G.Skill", "slug": "g-skill"},
         {"name": "Razer", "slug": "razer"},
         {"name": "Logitech G", "slug": "logitech-g"},
+        {"name": "AOC", "slug": "aoc"},
+        {"name": "HyperX", "slug": "hyperx"},
+        {"name": "Logitech", "slug": "logitech"},
+        {"name": "SteelSeries", "slug": "steelseries"},
+        {"name": "Elgato", "slug": "elgato"},
+        {"name": "NZXT", "slug": "nzxt"},
     ]
     
     for brand_data in brands_data:
