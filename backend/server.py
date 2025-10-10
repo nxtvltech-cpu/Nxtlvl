@@ -673,6 +673,88 @@ async def startup_event():
         if not existing:
             product = Product(**product_data)
             await db.products.insert_one(product.dict())
+    
+    # Seed new gaming products
+    from new_products_data import new_products_data, bundle_configurations
+    
+    # Add new products with SEO content generation
+    created_product_ids = {}  # Track product IDs by title for bundle creation
+    
+    for product_data in new_products_data:
+        existing = await db.products.find_one({"title": product_data["title"]})
+        if not existing:
+            # Generate SEO content if not provided
+            if not product_data.get("seo_title") or not product_data.get("seo_description"):
+                try:
+                    seo_title, seo_description = await generate_seo_content(
+                        product_data["title"], 
+                        product_data["category"], 
+                        product_data["brand"], 
+                        product_data["description"]
+                    )
+                    product_data["seo_title"] = seo_title
+                    product_data["seo_description"] = seo_description
+                except Exception as e:
+                    print(f"SEO generation failed for {product_data['title']}: {e}")
+            
+            product = Product(**product_data)
+            await db.products.insert_one(product.dict())
+            created_product_ids[product_data["title"]] = product.id
+            print(f"Created new product: {product_data['title']}")
+    
+    # Create bundles
+    for bundle_config in bundle_configurations:
+        existing_bundle = await db.bundles.find_one({"slug": bundle_config["slug"]})
+        if not existing_bundle:
+            # Get product IDs from titles
+            product_ids = []
+            for title in bundle_config["product_titles"]:
+                if title in created_product_ids:
+                    product_ids.append(created_product_ids[title])
+                else:
+                    # Look up existing product by title
+                    existing_product = await db.products.find_one({"title": title})
+                    if existing_product:
+                        product_ids.append(existing_product["id"])
+            
+            if product_ids:
+                bundle_data = {
+                    "name": bundle_config["name"],
+                    "slug": bundle_config["slug"],
+                    "description": bundle_config["description"],
+                    "product_ids": product_ids,
+                    "discount_percentage": bundle_config["discount_percentage"],
+                    "badges": bundle_config["badges"],
+                    "images": bundle_config["images"]
+                }
+                bundle = Bundle(**bundle_data)
+                await db.bundles.insert_one(bundle.dict())
+                print(f"Created bundle: {bundle_config['name']}")
+    
+    # Update frequently bought together relationships
+    frequently_bought_pairs = [
+        ("Logitech G502 HERO High Performance Gaming Mouse", "Razer Goliathus Extended Gaming Mouse Pad"),
+        ("HyperX Alloy FPS Pro Mechanical Gaming Keyboard", "Logitech G502 HERO High Performance Gaming Mouse"),
+        ("Corsair K70 RGB PRO Mechanical Gaming Keyboard", "Razer Basilisk V3 Ergonomic Gaming Mouse"),
+        ("AOC 24G2 24\" IPS Gaming Monitor 144Hz", "SteelSeries Arctis 7 Wireless Gaming Headset"),
+        ("Elgato Stream Deck Mini - Live Content Creation Controller", "SteelSeries Arctis 7 Wireless Gaming Headset")
+    ]
+    
+    for product1_title, product2_title in frequently_bought_pairs:
+        product1 = await db.products.find_one({"title": product1_title})
+        product2 = await db.products.find_one({"title": product2_title})
+        
+        if product1 and product2:
+            # Add product2 to product1's frequently bought together
+            await db.products.update_one(
+                {"id": product1["id"]},
+                {"$addToSet": {"frequently_bought_together": product2["id"]}}
+            )
+            # Add product1 to product2's frequently bought together  
+            await db.products.update_one(
+                {"id": product2["id"]},
+                {"$addToSet": {"frequently_bought_together": product1["id"]}}
+            )
 
 # Configure logging
 logging.basicConfig(
