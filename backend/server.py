@@ -366,6 +366,32 @@ async def delete_product(product_id: str, current_user: User = Depends(get_admin
         raise HTTPException(status_code=404, detail="Product not found")
     return {"message": "Product deleted"}
 
+# Admin bundle routes
+@api_router.post("/admin/bundles", response_model=Bundle)
+async def create_bundle(bundle: BundleCreate, current_user: User = Depends(get_admin_user)):
+    bundle_obj = Bundle(**bundle.dict())
+    await db.bundles.insert_one(bundle_obj.dict())
+    return bundle_obj
+
+@api_router.put("/admin/bundles/{bundle_id}", response_model=Bundle)
+async def update_bundle(bundle_id: str, bundle_update: BundleCreate, current_user: User = Depends(get_admin_user)):
+    existing_bundle = await db.bundles.find_one({"id": bundle_id})
+    if not existing_bundle:
+        raise HTTPException(status_code=404, detail="Bundle not found")
+    
+    update_dict = bundle_update.dict()
+    await db.bundles.update_one({"id": bundle_id}, {"$set": update_dict})
+    
+    updated_bundle = await db.bundles.find_one({"id": bundle_id})
+    return Bundle(**updated_bundle)
+
+@api_router.delete("/admin/bundles/{bundle_id}")
+async def delete_bundle(bundle_id: str, current_user: User = Depends(get_admin_user)):
+    result = await db.bundles.delete_one({"id": bundle_id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Bundle not found")
+    return {"message": "Bundle deleted"}
+
 # Include the router in the main app
 app.include_router(api_router)
 
