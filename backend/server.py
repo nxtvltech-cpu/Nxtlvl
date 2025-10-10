@@ -47,6 +47,13 @@ class Product(BaseModel):
     description: str
     specs: Dict[str, Any] = {}
     compatibility: List[str] = []
+    # SEO fields
+    seo_title: Optional[str] = None
+    seo_description: Optional[str] = None
+    tags: List[str] = []
+    # Variants and bundles
+    variants: List[Dict[str, Any]] = []  # price variations for colors/specs/sizes
+    frequently_bought_together: List[str] = []  # product IDs
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     published: bool = True
 
