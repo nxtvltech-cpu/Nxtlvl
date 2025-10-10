@@ -472,6 +472,10 @@ async def startup_event():
         {"name": "Cooling", "slug": "cooling", "description": "CPU and System Cooling"},
         {"name": "Keyboard", "slug": "keyboard", "description": "Gaming Keyboards"},
         {"name": "Mouse", "slug": "mouse", "description": "Gaming Mice"},
+        {"name": "Monitor", "slug": "monitor", "description": "Gaming Monitors and Displays"},
+        {"name": "Headset", "slug": "headset", "description": "Gaming Headsets and Audio"},
+        {"name": "Mouse Pad", "slug": "mouse-pad", "description": "Gaming Mouse Pads"},
+        {"name": "Streaming", "slug": "streaming", "description": "Streaming Equipment and Tools"},
     ]
     
     for cat_data in categories_data:
