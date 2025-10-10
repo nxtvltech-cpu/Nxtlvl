@@ -255,6 +255,20 @@ async def get_brands():
     brands = await db.brands.find().to_list(length=None)
     return [Brand(**brand) for brand in brands]
 
+# Bundle routes
+@api_router.get("/bundles", response_model=List[Bundle])
+async def get_bundles(active_only: bool = True):
+    filter_query = {"active": True} if active_only else {}
+    bundles = await db.bundles.find(filter_query).to_list(length=None)
+    return [Bundle(**bundle) for bundle in bundles]
+
+@api_router.get("/bundles/{bundle_id}", response_model=Bundle)
+async def get_bundle(bundle_id: str):
+    bundle = await db.bundles.find_one({"id": bundle_id, "active": True})
+    if not bundle:
+        raise HTTPException(status_code=404, detail="Bundle not found")
+    return Bundle(**bundle)
+
 # Cart routes
 @api_router.get("/cart/{session_id}", response_model=Cart)
 async def get_cart(session_id: str):
