@@ -24,7 +24,7 @@ db = client[os.environ['DB_NAME']]
 # Security
 security = HTTPBearer()
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-SECRET_KEY = os.environ.get('JWT_SECRET_KEY', 'nxtlvl-secret-key-2025')
+SECRET_KEY = os.environ['JWT_SECRET_KEY']
 ALGORITHM = "HS256"
 
 # Create the main app
