@@ -125,6 +125,7 @@ function App() {
           />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/admin/shopify" element={<ShopifyAdmin />} />
         </Routes>
       </Router>
       <Toaster position="top-right" />
