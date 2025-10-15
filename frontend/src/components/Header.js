@@ -18,6 +18,11 @@ const Header = ({ cartItemCount = 0 }) => {
             <li><Link to="/about">About Us</Link></li>
             <li><Link to="/contact">Contact</Link></li>
             <li>
+              <Link to="/admin/shopify" className="shopify-admin-link" title="Shopify Admin">
+                <Store size={20} />
+              </Link>
+            </li>
+            <li>
               <Link to="/cart" className="cart-badge">
                 <ShoppingCart size={20} />
                 {cartItemCount > 0 && (
