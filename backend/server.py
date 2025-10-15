@@ -164,6 +164,40 @@ class Token(BaseModel):
     access_token: str
     token_type: str
 
+# Shopify Models
+class ShopifyStore(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    shop_domain: str
+    access_token: str
+    scopes: str
+    installed_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    uninstalled: bool = False
+    plan_name: Optional[str] = None
+    owner: Optional[str] = None
+    email: Optional[str] = None
+
+class ShopifyProduct(BaseModel):
+    id: str
+    shopify_id: str
+    shop_domain: str
+    title: str
+    handle: str
+    vendor: str
+    product_type: str
+    status: str
+    images: List[str] = []
+    variants: List[Dict[str, Any]] = []
+    inventory_total: int = 0
+    url: str
+    created_at: datetime
+    updated_at: datetime
+
+class ShopifyWebhook(BaseModel):
+    shop_domain: str
+    topic: str
+    payload: Dict[str, Any]
+    verified: bool = False
+
 # Helper functions
 def create_access_token(data: dict):
     to_encode = data.copy()
