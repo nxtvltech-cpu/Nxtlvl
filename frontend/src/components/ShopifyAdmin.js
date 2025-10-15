@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Store, RefreshCw, Plus, ExternalLink, Database, Sync } from 'lucide-react';
+import { Store, RefreshCw, Plus, ExternalLink, Database, RotateCcw } from 'lucide-react';
 
 const ShopifyAdmin = () => {
   const [stores, setStores] = useState([]);
