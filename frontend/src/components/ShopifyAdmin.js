@@ -169,7 +169,7 @@ const ShopifyAdmin = () => {
                     className="btn-secondary sync-btn"
                     disabled={syncLoading[store.shop_domain]}
                   >
-                    <Sync size={16} className={syncLoading[store.shop_domain] ? 'spinning' : ''} />
+                    <RotateCcw size={16} className={syncLoading[store.shop_domain] ? 'spinning' : ''} />
                     {syncLoading[store.shop_domain] ? 'Syncing...' : 'Sync Products'}
                   </button>
                   <button
