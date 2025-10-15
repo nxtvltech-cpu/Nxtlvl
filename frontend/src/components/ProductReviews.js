@@ -8,8 +8,8 @@ const ProductReviews = ({ productId, productTitle }) => {
   const mockReviews = [
     {
       id: 1,
-      username: "ProGamer2024",
-      avatar: "P",
+      username: "Michael Chen",
+      avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzV8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjA1Mzk2NjB8MA&ixlib=rb-4.1.0&q=85",
       rating: 5,
       date: "2 weeks ago",
       verified: true,
@@ -20,8 +20,8 @@ const ProductReviews = ({ productId, productTitle }) => {
     },
     {
       id: 2,
-      username: "TechReviewGuru",
-      avatar: "T",
+      username: "Sarah Thompson",
+      avatar: "https://images.unsplash.com/photo-1581065178047-8ee15951ede6?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzV8MHwxfHNlYXJjaHwyfHxwcm9mZXNzaW9uYWwlMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjA1Mzk2NjB8MA&ixlib=rb-4.1.0&q=85",
       rating: 5,
       date: "1 month ago",
       verified: true,
@@ -32,8 +32,8 @@ const ProductReviews = ({ productId, productTitle }) => {
     },
     {
       id: 3,
-      username: "StreamerLife",
-      avatar: "S",
+      username: "Jessica Martinez",
+      avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzV8MHwxfHNlYXJjaHwzfHxwcm9mZXNzaW9uYWwlMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjA1Mzk2NjB8MA&ixlib=rb-4.1.0&q=85",
       rating: 4,
       date: "3 weeks ago",
       verified: true,
@@ -44,8 +44,8 @@ const ProductReviews = ({ productId, productTitle }) => {
     },
     {
       id: 4,
-      username: "BuildMaster",
-      avatar: "B",
+      username: "David Rodriguez",
+      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzV8MHwxfHNlYXJjaHw0fHxwcm9mZXNzaW9uYWwlMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjA1Mzk2NjB8MA&ixlib=rb-4.1.0&q=85",
       rating: 5,
       date: "1 week ago",
       verified: true,
@@ -56,8 +56,8 @@ const ProductReviews = ({ productId, productTitle }) => {
     },
     {
       id: 5,
-      username: "FirstTimeBuyer",
-      avatar: "F",
+      username: "Emma Wilson",
+      avatar: "https://images.unsplash.com/photo-1627161683077-e34782c24d81?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzd8MHwxfHNlYXJjaHwxfHxoZWFkc2hvdHxlbnwwfHx8fDE3NjA1NjQ3MDJ8MA&ixlib=rb-4.1.0&q=85",
       rating: 4,
       date: "4 days ago",
       verified: true,
