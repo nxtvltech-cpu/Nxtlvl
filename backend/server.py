@@ -271,6 +271,114 @@ async def get_admin_user(current_user: User = Depends(get_current_user)):
         raise HTTPException(status_code=403, detail="Admin access required")
     return current_user
 
+# Shopify Helper Functions
+def verify_shopify_webhook(request_body: bytes, shop_domain: str, webhook_secret: str):
+    """Verify Shopify webhook signature"""
+    try:
+        hmac_header = request.headers.get('X-Shopify-Hmac-Sha256')
+        if not hmac_header:
+            return False
+        
+        computed_hmac = base64.b64encode(
+            hmac.new(webhook_secret.encode(), request_body, hashlib.sha256).digest()
+        ).decode()
+        
+        return hmac.compare_digest(computed_hmac, hmac_header)
+    except Exception:
+        return False
+
+def create_shopify_session(shop_domain: str, access_token: str):
+    """Create authenticated Shopify session"""
+    session = shopify.Session(
+        shop_domain=shop_domain,
+        version=os.environ.get('SHOPIFY_API_VERSION', '2024-01'),
+        token=access_token
+    )
+    shopify.ShopifyResource.activate_session(session)
+    return session
+
+def build_oauth_url(shop_domain: str, scopes: str, redirect_uri: str):
+    """Build Shopify OAuth authorization URL"""
+    params = {
+        'client_id': os.environ.get('SHOPIFY_API_KEY'),
+        'scope': scopes,
+        'redirect_uri': redirect_uri,
+        'state': str(uuid.uuid4())  # CSRF protection
+    }
+    return f"https://{shop_domain}/admin/oauth/authorize?{urlencode(params)}"
+
+async def sync_shopify_products(shop_domain: str, access_token: str):
+    """Sync products from Shopify to local database"""
+    try:
+        session = create_shopify_session(shop_domain, access_token)
+        
+        # Fetch products from Shopify
+        shopify_products = shopify.Product.find(limit=250)
+        
+        synced_products = []
+        for product in shopify_products:
+            # Transform Shopify product to our format
+            nxtlvl_product = {
+                "id": str(uuid.uuid4()),
+                "title": product.title,
+                "category": product.product_type or "Gaming",
+                "brand": product.vendor,
+                "price": float(product.variants[0].price) if product.variants else 0.0,
+                "compare_at_price": float(product.variants[0].compare_at_price) if product.variants and product.variants[0].compare_at_price else None,
+                "badges": ["Shopify"] + (["Sale"] if any(v.compare_at_price for v in product.variants) else []),
+                "rating": 4.5,  # Default rating
+                "inventory": sum(int(v.inventory_quantity or 0) for v in product.variants),
+                "images": [img.src for img in product.images],
+                "short_benefit": product.title,  # Use title as short benefit
+                "description": product.body_html or f"Premium {product.title} available at NXTLVL gaming store.",
+                "specs": {
+                    "shopify_id": str(product.id),
+                    "handle": product.handle,
+                    "vendor": product.vendor,
+                    "product_type": product.product_type,
+                    "status": product.status
+                },
+                "compatibility": [],
+                "seo_title": f"{product.title} | NXTLVL Gaming Store",
+                "seo_description": f"Shop {product.title} at NXTLVL. Premium gaming products with fast shipping.",
+                "tags": [product.product_type, product.vendor, "gaming"] if product.product_type else ["gaming"],
+                "variants": [
+                    {
+                        "id": str(v.id),
+                        "title": v.title,
+                        "price": float(v.price),
+                        "sku": v.sku,
+                        "inventory": int(v.inventory_quantity or 0)
+                    } for v in product.variants
+                ],
+                "frequently_bought_together": [],
+                "shopify_data": {
+                    "shopify_id": str(product.id),
+                    "handle": product.handle,
+                    "shop_domain": shop_domain,
+                    "url": f"https://{shop_domain}/products/{product.handle}"
+                }
+            }
+            
+            # Check if product already exists
+            existing = await db.products.find_one({"specs.shopify_id": str(product.id)})
+            if existing:
+                # Update existing product
+                await db.products.update_one(
+                    {"specs.shopify_id": str(product.id)},
+                    {"$set": nxtlvl_product}
+                )
+            else:
+                # Insert new product
+                await db.products.insert_one(nxtlvl_product)
+            
+            synced_products.append(nxtlvl_product)
+        
+        return synced_products
+    except Exception as e:
+        print(f"Error syncing Shopify products: {e}")
+        return []
+
 # Routes
 
 # Auth routes
