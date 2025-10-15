@@ -2047,3 +2047,300 @@ body {
     padding: 0 1rem;
   }
 }
+/* Payment method logos */
+.payment-methods {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.payment-method-logo {
+  width: 50px;
+  height: 32px;
+  object-fit: contain;
+  border-radius: 4px;
+  background: white;
+  padding: 4px;
+}
+
+/* Shopify Admin Styles */
+.shopify-admin {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: var(--text);
+}
+
+.admin-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.header-title h2 {
+  font-size: 2.5rem;
+  color: var(--nx-green);
+  margin: 0;
+}
+
+.header-description {
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+.install-section {
+  background: rgba(0, 255, 133, 0.05);
+  border: 1px solid rgba(0, 255, 133, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 3rem;
+}
+
+.install-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--nx-green);
+  margin-bottom: 1.5rem;
+}
+
+.install-form {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.shop-input {
+  background: transparent;
+  border: none;
+  padding: 1rem;
+  color: var(--text);
+  font-size: 1rem;
+  outline: none;
+  min-width: 300px;
+}
+
+.domain-suffix {
+  padding: 1rem;
+  background: rgba(0, 255, 133, 0.1);
+  color: var(--nx-green);
+  font-weight: 500;
+}
+
+.install-btn {
+  padding: 1rem 1.5rem;
+  white-space: nowrap;
+}
+
+.install-help {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.stores-section {
+  margin-bottom: 3rem;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.section-header h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text);
+  margin: 0;
+}
+
+.refresh-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.loading-state, .empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  text-align: center;
+}
+
+.empty-state svg {
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.empty-state h4 {
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+  color: var(--muted);
+}
+
+.stores-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.store-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.store-card:hover {
+  border-color: var(--nx-green);
+  box-shadow: 0 8px 32px rgba(0, 255, 133, 0.1);
+}
+
+.store-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.store-info h4 {
+  color: var(--text);
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.store-plan {
+  background: rgba(138, 43, 226, 0.2);
+  color: var(--nx-purple);
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.status-badge {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.status-badge.active {
+  background: rgba(0, 255, 133, 0.2);
+  color: var(--nx-green);
+}
+
+.store-details {
+  margin-bottom: 1.5rem;
+}
+
+.store-details p {
+  margin: 0.5rem 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.store-details strong {
+  color: var(--text);
+}
+
+.store-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.sync-btn, .view-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.instructions-section {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.instructions-section h3 {
+  color: var(--text);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.instructions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.instruction-card {
+  text-align: center;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(0, 255, 133, 0.02);
+}
+
+.step-number {
+  width: 40px;
+  height: 40px;
+  background: var(--nx-green);
+  color: var(--bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin: 0 auto 1rem auto;
+}
+
+.instruction-card h4 {
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.instruction-card p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.spinning {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
