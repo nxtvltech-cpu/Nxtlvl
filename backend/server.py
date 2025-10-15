@@ -381,6 +381,121 @@ async def sync_shopify_products(shop_domain: str, access_token: str):
 
 # Routes
 
+# Shopify OAuth routes
+@api_router.get("/shopify/install")
+async def shopify_install(shop: str):
+    """Initiate Shopify app installation"""
+    if not shop.endswith('.myshopify.com'):
+        shop = f"{shop}.myshopify.com"
+    
+    scopes = os.environ.get('SHOPIFY_SCOPES', 'read_products,write_products')
+    redirect_uri = os.environ.get('SHOPIFY_REDIRECT_URI')
+    
+    oauth_url = build_oauth_url(shop, scopes, redirect_uri)
+    return RedirectResponse(url=oauth_url)
+
+@api_router.get("/shopify/oauth/callback")
+async def shopify_oauth_callback(shop: str, code: str, state: str):
+    """Handle Shopify OAuth callback"""
+    try:
+        # Exchange code for access token
+        session = shopify.Session(shop, os.environ.get('SHOPIFY_API_VERSION', '2024-01'))
+        access_token = session.request_token(code)
+        
+        # Get shop information
+        shopify.ShopifyResource.activate_session(session)
+        shop_info = shopify.Shop.current()
+        
+        # Save store to database
+        store_data = ShopifyStore(
+            shop_domain=shop,
+            access_token=access_token,
+            scopes=os.environ.get('SHOPIFY_SCOPES', ''),
+            plan_name=shop_info.plan_name,
+            owner=shop_info.shop_owner,
+            email=shop_info.email
+        )
+        
+        # Check if store already exists
+        existing_store = await db.shopify_stores.find_one({"shop_domain": shop})
+        if existing_store:
+            await db.shopify_stores.update_one(
+                {"shop_domain": shop},
+                {"$set": store_data.dict()}
+            )
+        else:
+            await db.shopify_stores.insert_one(store_data.dict())
+        
+        # Sync initial products
+        await sync_shopify_products(shop, access_token)
+        
+        return {"message": "App installed successfully", "shop": shop}
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Installation failed: {str(e)}")
+
+@api_router.post("/shopify/webhook/{topic}")
+async def shopify_webhook(topic: str, request: Request):
+    """Handle Shopify webhooks"""
+    body = await request.body()
+    shop_domain = request.headers.get('X-Shopify-Shop-Domain')
+    
+    # In production, verify webhook signature
+    # verified = verify_shopify_webhook(body, shop_domain, webhook_secret)
+    
+    try:
+        import json
+        payload = json.loads(body.decode())
+        
+        # Handle different webhook topics
+        if topic == "products/create" or topic == "products/update":
+            # Re-sync products when they change
+            store = await db.shopify_stores.find_one({"shop_domain": shop_domain})
+            if store:
+                await sync_shopify_products(shop_domain, store["access_token"])
+        
+        elif topic == "app/uninstalled":
+            # Mark store as uninstalled
+            await db.shopify_stores.update_one(
+                {"shop_domain": shop_domain},
+                {"$set": {"uninstalled": True}}
+            )
+        
+        return {"status": "success"}
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Webhook processing failed: {str(e)}")
+
+@api_router.get("/shopify/stores", response_model=List[ShopifyStore])
+async def get_shopify_stores():
+    """Get all connected Shopify stores"""
+    stores = await db.shopify_stores.find({"uninstalled": False}).to_list(length=None)
+    return [ShopifyStore(**store) for store in stores]
+
+@api_router.post("/shopify/sync/{shop_domain}")
+async def sync_store_products(shop_domain: str):
+    """Manually sync products from specific Shopify store"""
+    store = await db.shopify_stores.find_one({"shop_domain": shop_domain})
+    if not store:
+        raise HTTPException(status_code=404, detail="Store not found")
+    
+    synced_products = await sync_shopify_products(shop_domain, store["access_token"])
+    return {
+        "message": f"Synced {len(synced_products)} products from {shop_domain}",
+        "products_count": len(synced_products)
+    }
+
+@api_router.get("/shopify/products/{shop_domain}")
+async def get_shopify_store_products(shop_domain: str):
+    """Get products from specific Shopify store"""
+    products = await db.products.find({
+        "shopify_data.shop_domain": shop_domain
+    }).to_list(length=None)
+    
+    return {
+        "shop_domain": shop_domain,
+        "products": [Product(**product) for product in products],
+        "count": len(products)
+    }
+
 # Auth routes
 @api_router.post("/auth/login", response_model=Token)
 async def login(request: LoginRequest):
