@@ -123,6 +123,19 @@ body {
   font-weight: 600;
 }
 
+.shopify-admin-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: var(--nx-purple);
+  transition: all 0.3s ease;
+}
+
+.shopify-admin-link:hover {
+  color: var(--nx-green);
+  transform: scale(1.1);
+}
+
 /* Button Styles */
 .btn-primary {
   background: transparent;
