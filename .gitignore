@@ -93,4 +93,7 @@ htmlcov/
 
 # Emergent specific
 .emergent/
-supervisor.sock 
+supervisor.sock -e 
+# Environment files
+*.env
+*.env.*
