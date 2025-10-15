@@ -710,8 +710,7 @@ app.add_middleware(
 # Startup event to seed data
 @app.on_event("startup")
 async def startup_event():
-    # Initialize Shopify API configuration
-    shopify.ShopifyResource.set_site(os.environ.get('SHOPIFY_API_KEY', ''))
+    # Shopify API will be initialized per-session as needed
     
     # Create admin user
     admin_email = "admin@nxtlvl.gg"
