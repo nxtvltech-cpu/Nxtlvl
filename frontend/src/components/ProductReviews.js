@@ -114,7 +114,22 @@ const ProductReviews = ({ productId, productTitle }) => {
           <div key={review.id} className="review-item">
             <div className="review-header">
               <div className="review-user">
-                <div className="review-avatar">{review.avatar}</div>
+                <div className="review-avatar">
+                  {review.avatar.startsWith('http') ? (
+                    <img 
+                      src={review.avatar} 
+                      alt={review.username} 
+                      style={{ 
+                        width: '100%', 
+                        height: '100%', 
+                        borderRadius: '50%', 
+                        objectFit: 'cover' 
+                      }} 
+                    />
+                  ) : (
+                    review.avatar
+                  )}
+                </div>
                 <div className="review-user-info">
                   <div className="review-username">{review.username}</div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
