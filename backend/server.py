@@ -710,6 +710,9 @@ app.add_middleware(
 # Startup event to seed data
 @app.on_event("startup")
 async def startup_event():
+    # Initialize Shopify
+    shopify.ShopifyResource.set_user_agent("NXTLVL Gaming Store/1.0")
+    
     # Create admin user
     admin_email = "admin@nxtlvl.gg"
     admin_password = "admin123"
