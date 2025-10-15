@@ -1,0 +1,451 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "NXTLVL Gaming",
+    "theme_version": "1.0.0",
+    "theme_author": "NXTLVL Team",
+    "theme_documentation_url": "https://nxtlvl.gg/theme-docs",
+    "theme_support_url": "https://nxtlvl.gg/support"
+  },
+  {
+    "name": "Brand Settings",
+    "settings": [
+      {
+        "type": "header",
+        "content": "NXTLVL Brand Identity"
+      },
+      {
+        "type": "color",
+        "id": "nxt_green",
+        "label": "NXTLVL Green",
+        "default": "#00FF85",
+        "info": "Primary brand color for accents and highlights"
+      },
+      {
+        "type": "color",
+        "id": "nxt_purple", 
+        "label": "NXTLVL Purple",
+        "default": "#8A2BE2",
+        "info": "Secondary brand color for gradients and effects"
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Color",
+        "default": "#0A0A0A",
+        "info": "Main background color (Dark gaming theme)"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color",
+        "default": "#FFFFFF",
+        "info": "Primary text color"
+      },
+      {
+        "type": "color",
+        "id": "muted_color",
+        "label": "Muted Text Color",
+        "default": "#C0C0C0",
+        "info": "Secondary text and descriptions"
+      }
+    ]
+  },
+  {
+    "name": "Gaming Features",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Gaming Theme Features"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_animated_background",
+        "label": "Enable Animated Background",
+        "default": true,
+        "info": "Show floating particles, light orbs, and scanning beams"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_discount_banner", 
+        "label": "Show Discount Banner",
+        "default": true,
+        "info": "Display promotional banner at top of site"
+      },
+      {
+        "type": "text",
+        "id": "discount_banner_text",
+        "label": "Discount Banner Text",
+        "default": "🎮 BLACK FRIDAY: UP TO 40% OFF Gaming Components!",
+        "info": "Text displayed in the scrolling banner"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_product_animations",
+        "label": "Enable Product Animations",
+        "default": true,
+        "info": "Animate product cards and price elements"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_gaming_badges",
+        "label": "Show Gaming Performance Badges",
+        "default": true,
+        "info": "Display gaming-specific indicators on products"
+      },
+      {
+        "type": "range",
+        "id": "animation_speed",
+        "min": 1,
+        "max": 10,
+        "step": 1,
+        "label": "Animation Speed",
+        "default": 5,
+        "info": "Speed of background animations (1 = slowest, 10 = fastest)"
+      }
+    ]
+  },
+  {
+    "name": "Homepage",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Hero Section"
+      },
+      {
+        "type": "text",
+        "id": "hero_title",
+        "label": "Hero Title",
+        "default": "NXTLVL",
+        "info": "Main title displayed in hero section"
+      },
+      {
+        "type": "text",
+        "id": "hero_subtitle",
+        "label": "Hero Subtitle", 
+        "default": "Take Your Gaming to the Next Level",
+        "info": "Subtitle text below the main title"
+      },
+      {
+        "type": "text",
+        "id": "hero_button_text",
+        "label": "Hero Button Text",
+        "default": "Shop Now"
+      },
+      {
+        "type": "url",
+        "id": "hero_button_link",
+        "label": "Hero Button Link",
+        "info": "Leave empty to link to all products"
+      },
+      {
+        "type": "header",
+        "content": "Slogan Band"
+      },
+      {
+        "type": "text",
+        "id": "slogan_text",
+        "label": "Slogan Text",
+        "default": "Improve Your Game. Take It to NXTLVL.",
+        "info": "Text displayed in the gradient band below hero"
+      },
+      {
+        "type": "header",
+        "content": "Featured Collections"
+      },
+      {
+        "type": "collection",
+        "id": "featured_collection_1",
+        "label": "Featured Collection 1"
+      },
+      {
+        "type": "collection",
+        "id": "featured_collection_2", 
+        "label": "Featured Collection 2"
+      },
+      {
+        "type": "collection",
+        "id": "featured_collection_3",
+        "label": "Featured Collection 3"
+      }
+    ]
+  },
+  {
+    "name": "Product Settings",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Product Cards"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_vendor",
+        "label": "Show Product Vendor/Brand",
+        "default": true
+      },
+      {
+        "type": "checkbox", 
+        "id": "show_product_rating",
+        "label": "Show Product Rating",
+        "default": true,
+        "info": "Display star ratings on product cards"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_quick_actions",
+        "label": "Show Quick Action Buttons",
+        "default": true,
+        "info": "Display wishlist, compare, and quick view buttons"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_image_hover",
+        "label": "Enable Image Hover Effect",
+        "default": true,
+        "info": "Show second product image on hover"
+      },
+      {
+        "type": "range",
+        "id": "products_per_row_desktop",
+        "min": 2,
+        "max": 5,
+        "step": 1,
+        "label": "Products per row (Desktop)",
+        "default": 4
+      },
+      {
+        "type": "range", 
+        "id": "products_per_row_mobile",
+        "min": 1,
+        "max": 2,
+        "step": 1,
+        "label": "Products per row (Mobile)",
+        "default": 2
+      },
+      {
+        "type": "header",
+        "content": "Product Reviews"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_product_reviews",
+        "label": "Enable Product Reviews",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "reviews_app_id",
+        "label": "Reviews App ID",
+        "info": "If using a reviews app, enter the app ID"
+      }
+    ]
+  },
+  {
+    "name": "Cart & Checkout", 
+    "settings": [
+      {
+        "type": "header",
+        "content": "Cart Settings"
+      },
+      {
+        "type": "select",
+        "id": "cart_type",
+        "label": "Cart Type",
+        "options": [
+          {
+            "value": "drawer",
+            "label": "Drawer"
+          },
+          {
+            "value": "page",
+            "label": "Page"
+          }
+        ],
+        "default": "drawer"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_cart_notes",
+        "label": "Enable Cart Notes",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_shipping_calculator",
+        "label": "Show Shipping Calculator",
+        "default": true
+      },
+      {
+        "type": "header", 
+        "content": "Free Shipping"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_free_shipping_bar",
+        "label": "Show Free Shipping Progress Bar",
+        "default": true
+      },
+      {
+        "type": "number",
+        "id": "free_shipping_threshold",
+        "label": "Free Shipping Threshold",
+        "default": 150,
+        "info": "Amount needed for free shipping"
+      },
+      {
+        "type": "text",
+        "id": "free_shipping_message",
+        "label": "Free Shipping Message",
+        "default": "Free shipping on orders over $150!"
+      }
+    ]
+  },
+  {
+    "name": "Search & Navigation",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Search Settings"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_predictive_search",
+        "label": "Enable Predictive Search",
+        "default": true,
+        "info": "Show search suggestions as user types"
+      },
+      {
+        "type": "checkbox",
+        "id": "search_show_products",
+        "label": "Search Products",
+        "default": true
+      },
+      {
+        "type": "checkbox", 
+        "id": "search_show_collections",
+        "label": "Search Collections",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "search_show_pages",
+        "label": "Search Pages",
+        "default": false
+      },
+      {
+        "type": "range",
+        "id": "search_results_limit",
+        "min": 4,
+        "max": 20,
+        "step": 2,
+        "label": "Search Results Limit",
+        "default": 8
+      }
+    ]
+  },
+  {
+    "name": "Social Media",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Social Media Links"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter",
+        "label": "Twitter/X URL",
+        "info": "Full URL including https://"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram",
+        "label": "Instagram URL"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube",
+        "label": "YouTube URL"
+      },
+      {
+        "type": "text",
+        "id": "social_twitch",
+        "label": "Twitch URL"
+      },
+      {
+        "type": "text",
+        "id": "social_discord",
+        "label": "Discord URL"
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok",
+        "label": "TikTok URL"
+      },
+      {
+        "type": "header",
+        "content": "Gaming Communities"
+      },
+      {
+        "type": "text",
+        "id": "steam_profile",
+        "label": "Steam Profile URL"
+      },
+      {
+        "type": "text",
+        "id": "reddit_community",
+        "label": "Reddit Community URL"
+      }
+    ]
+  },
+  {
+    "name": "Advanced",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Performance"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_lazy_loading",
+        "label": "Enable Lazy Loading",
+        "default": true,
+        "info": "Improve page load times by loading images as needed"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_critical_css",
+        "label": "Enable Critical CSS",
+        "default": true,
+        "info": "Inline critical CSS for faster rendering"
+      },
+      {
+        "type": "header",
+        "content": "Custom Code"
+      },
+      {
+        "type": "html",
+        "id": "custom_css",
+        "label": "Custom CSS",
+        "info": "Add custom CSS styles"
+      },
+      {
+        "type": "html",
+        "id": "custom_js",
+        "label": "Custom JavaScript", 
+        "info": "Add custom JavaScript code"
+      },
+      {
+        "type": "html",
+        "id": "head_code",
+        "label": "Code in <head>",
+        "info": "Add tracking codes, meta tags, etc."
+      },
+      {
+        "type": "html",
+        "id": "body_code",
+        "label": "Code before </body>",
+        "info": "Add analytics code, chat widgets, etc."
+      }
+    ]
+  }
+]
