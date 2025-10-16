@@ -33,6 +33,10 @@
     "search_show_collections": true,
     "search_show_pages": false,
     "search_results_limit": 8,
+    "enable_social_float": true,
+    "instagram_url": "",
+    "tiktok_url": "",
+    "whatsapp_number": "",
     "enable_lazy_loading": true,
     "enable_critical_css": true,
     "sections": {
