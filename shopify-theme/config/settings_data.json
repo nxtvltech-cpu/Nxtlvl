@@ -1,0 +1,72 @@
+{
+  "current": {
+    "nxt_green": "#00FF85",
+    "nxt_purple": "#8A2BE2", 
+    "background_color": "#0A0A0A",
+    "text_color": "#FFFFFF",
+    "muted_color": "#C0C0C0",
+    "show_animated_background": true,
+    "show_discount_banner": true,
+    "discount_banner_text": "🎮 BLACK FRIDAY: UP TO 40% OFF Gaming Components!",
+    "enable_product_animations": true,
+    "show_gaming_badges": true,
+    "animation_speed": 5,
+    "hero_title": "NXTLVL",
+    "hero_subtitle": "Take Your Gaming to the Next Level",
+    "hero_button_text": "Shop Now",
+    "slogan_text": "Improve Your Game. Take It to NXTLVL.",
+    "show_vendor": true,
+    "show_product_rating": true,
+    "show_quick_actions": true,
+    "enable_image_hover": true,
+    "products_per_row_desktop": 4,
+    "products_per_row_mobile": 2,
+    "enable_product_reviews": true,
+    "cart_type": "drawer",
+    "enable_cart_notes": true,
+    "show_shipping_calculator": true,
+    "show_free_shipping_bar": true,
+    "free_shipping_threshold": 150,
+    "free_shipping_message": "Free shipping on orders over $150!",
+    "enable_predictive_search": true,
+    "search_show_products": true,
+    "search_show_collections": true,
+    "search_show_pages": false,
+    "search_results_limit": 8,
+    "enable_lazy_loading": true,
+    "enable_critical_css": true,
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "show_search": true,
+          "show_discount_banner": true
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "show_newsletter": true,
+          "newsletter_heading": "Newsletter",
+          "newsletter_text": "Get the latest gaming gear updates, exclusive deals, and performance tips."
+        }
+      }
+    }
+  },
+  "presets": {
+    "NXTLVL Gaming Dark": {
+      "nxt_green": "#00FF85",
+      "nxt_purple": "#8A2BE2",
+      "background_color": "#0A0A0A",
+      "text_color": "#FFFFFF",
+      "show_animated_background": true
+    },
+    "NXTLVL Gaming Light": {
+      "nxt_green": "#00D86A",
+      "nxt_purple": "#7A1FD2", 
+      "background_color": "#FFFFFF",
+      "text_color": "#0A0A0A",
+      "show_animated_background": false
+    }
+  }
+}
