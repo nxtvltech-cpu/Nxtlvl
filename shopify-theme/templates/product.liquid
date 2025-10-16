@@ -8,28 +8,49 @@
 <div class="product-page">
   <div class="container">
     <div class="product-grid-layout">
-      {%- comment -%} Product Images {%- endcomment -%}
+      {%- comment -%} Product Images with Auto-Sliding Carousel {%- endcomment -%}
       <div class="product-media">
-        <div class="product-gallery">
+        <div class="product-gallery-slider" data-product-detail-slider>
           {%- if product.media.size > 0 -%}
-            <div class="gallery-main">
-              <img 
-                id="product-featured-image"
-                src="{{ featured_image | img_url: '800x800' }}"
-                alt="{{ featured_image.alt | default: product.title | escape }}"
-                width="800"
-                height="800"
-              >
+            <div class="gallery-main-slider">
+              <div class="slides">
+                {%- for media in product.media -%}
+                  <div class="slide {% if forloop.first %}active{% endif %}">
+                    <img 
+                      src="{{ media | img_url: '800x800' }}"
+                      alt="{{ media.alt | default: product.title | escape }}"
+                      width="800"
+                      height="800"
+                    >
+                  </div>
+                {%- endfor -%}
+              </div>
+              
+              {%- if product.media.size > 1 -%}
+                <button type="button" class="gallery-arrow prev" aria-label="Previous image">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="15,18 9,12 15,6"/>
+                  </svg>
+                </button>
+                <button type="button" class="gallery-arrow next" aria-label="Next image">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9,18 15,12 9,6"/>
+                  </svg>
+                </button>
+                
+                <div class="gallery-counter">
+                  <span class="current-slide">1</span> / <span class="total-slides">{{ product.media.size }}</span>
+                </div>
+              {%- endif -%}
             </div>
             
             {%- if product.media.size > 1 -%}
               <div class="gallery-thumbnails">
-                {%- for media in product.media limit: 8 -%}
+                {%- for media in product.media -%}
                   <button 
                     type="button"
-                    class="thumbnail {% if media == featured_image %}active{% endif %}"
-                    data-media-id="{{ media.id }}"
-                    data-media-url="{{ media | img_url: '800x800' }}"
+                    class="thumbnail {% if forloop.first %}active{% endif %}"
+                    data-slide-index="{{ forloop.index0 }}"
                   >
                     <img 
                       src="{{ media | img_url: '100x100' }}"
@@ -45,29 +66,20 @@
           {%- endif -%}
         </div>
         
-        {%- comment -%} Product Badges {%- endcomment -%}
-        {%- if product.tags.size > 0 or product.compare_at_price > product.price -%}
-          <div class="product-badges">
-            {%- if product.compare_at_price > product.price -%}
-              {%- assign savings = product.compare_at_price | minus: product.price -%}
-              {%- assign savings_percent = savings | times: 100 | divided_by: product.compare_at_price -%}
-              <span class="badge sale">{{ savings_percent | round }}% OFF</span>
-            {%- endif -%}
-            
-            {%- for tag in product.tags limit: 3 -%}
-              {%- if tag contains 'badge:' -%}
-                {%- assign badge_text = tag | remove: 'badge:' -%}
-                <span class="badge">{{ badge_text }}</span>
-              {%- elsif tag == 'gaming' -%}
-                <span class="badge performance-badge">🎮 Gaming</span>
-              {%- elsif tag == 'rgb' -%}
-                <span class="badge performance-badge">🌈 RGB</span>
-              {%- elsif tag == 'high-performance' -%}
-                <span class="badge performance-badge">⚡ High Performance</span>
-              {%- endif -%}
-            {%- endfor -%}
-          </div>
-        {%- endif -%}
+        {%- comment -%} Product Badges with Discount {%- endcomment -%}
+        <div class="product-detail-badges">
+          {%- comment -%} Generate random discount between 10-40% {%- endcomment -%}
+          {%- assign discount_base = product.id | modulo: 4 -%}
+          {%- assign discount_percent = 10 | plus: discount_base | times: 10 -%}
+          <span class="badge sale-badge-lg">🔥 {{ discount_percent }}% OFF</span>
+          <span class="badge sale-text-lg">FLASH SALE</span>
+          
+          {%- comment -%} Limited Time Badge {%- endcomment -%}
+          {%- assign show_limited = product.id | modulo: 2 -%}
+          {%- if show_limited == 0 -%}
+            <span class="badge limited-badge-lg">⏰ LIMITED TIME ONLY</span>
+          {%- endif -%}
+        </div>
       </div>
       
       {%- comment -%} Product Information {%- endcomment -%}
