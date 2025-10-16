@@ -554,26 +554,126 @@
   .quantity-selector {
     flex: none;
   }
+  
+  .gallery-main-slider {
+    height: 350px;
+  }
+  
+  .gallery-arrow {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .current-price-lg {
+    font-size: 2rem;
+  }
+  
+  .original-price-lg {
+    font-size: 1.2rem;
+  }
+  
+  .badge.sale-badge-lg {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
 }
 </style>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // Gallery thumbnails
-  const thumbnails = document.querySelectorAll('.thumbnail');
-  const featuredImage = document.getElementById('product-featured-image');
+  // Product Detail Gallery Slider with Auto-play
+  const detailSlider = document.querySelector('[data-product-detail-slider]');
   
-  thumbnails.forEach(thumbnail => {
-    thumbnail.addEventListener('click', function() {
+  if (detailSlider) {
+    const slides = detailSlider.querySelectorAll('.slide');
+    const thumbnails = detailSlider.querySelectorAll('.thumbnail');
+    const prevBtn = detailSlider.querySelector('.gallery-arrow.prev');
+    const nextBtn = detailSlider.querySelector('.gallery-arrow.next');
+    const currentSlideEl = detailSlider.querySelector('.current-slide');
+    const totalSlidesEl = detailSlider.querySelector('.total-slides');
+    
+    let currentSlide = 0;
+    let autoplayInterval;
+    
+    function showSlide(index) {
+      slides.forEach(s => s.classList.remove('active'));
       thumbnails.forEach(t => t.classList.remove('active'));
-      this.classList.add('active');
       
-      const newImageUrl = this.dataset.mediaUrl;
-      if (featuredImage && newImageUrl) {
-        featuredImage.src = newImageUrl;
+      if (slides[index]) slides[index].classList.add('active');
+      if (thumbnails[index]) thumbnails[index].classList.add('active');
+      
+      if (currentSlideEl) currentSlideEl.textContent = index + 1;
+      
+      currentSlide = index;
+    }
+    
+    function nextSlide() {
+      let next = (currentSlide + 1) % slides.length;
+      showSlide(next);
+    }
+    
+    function prevSlide() {
+      let prev = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(prev);
+    }
+    
+    function startAutoplay() {
+      if (slides.length > 1) {
+        autoplayInterval = setInterval(nextSlide, 4000); // Change every 4 seconds
+      }
+    }
+    
+    function stopAutoplay() {
+      clearInterval(autoplayInterval);
+    }
+    
+    // Next button
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        stopAutoplay();
+        nextSlide();
+        startAutoplay();
+      });
+    }
+    
+    // Previous button
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        stopAutoplay();
+        prevSlide();
+        startAutoplay();
+      });
+    }
+    
+    // Thumbnail navigation
+    thumbnails.forEach((thumbnail, index) => {
+      thumbnail.addEventListener('click', () => {
+        stopAutoplay();
+        showSlide(index);
+        startAutoplay();
+      });
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        stopAutoplay();
+        prevSlide();
+        startAutoplay();
+      } else if (e.key === 'ArrowRight') {
+        stopAutoplay();
+        nextSlide();
+        startAutoplay();
       }
     });
-  });
+    
+    // Pause autoplay on hover
+    detailSlider.addEventListener('mouseenter', stopAutoplay);
+    detailSlider.addEventListener('mouseleave', startAutoplay);
+    
+    // Start autoplay
+    startAutoplay();
+  }
   
   // Quantity buttons
   const minusBtn = document.querySelector('.quantity-btn.minus');
