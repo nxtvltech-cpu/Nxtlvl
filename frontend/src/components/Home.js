@@ -81,6 +81,43 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Brand Carousel */}
+      <section className="brand-carousel">
+        <div className="brand-track">
+          <div className="brand-slide">
+            <div className="brand-item nvidia">NVIDIA</div>
+            <div className="brand-item amd">AMD RYZEN</div>
+            <div className="brand-item intel">INTEL</div>
+            <div className="brand-item razer">RAZER</div>
+            <div className="brand-item logitech">LOGITECH G</div>
+            <div className="brand-item corsair">CORSAIR</div>
+            <div className="brand-item hyperx">HYPERX</div>
+            <div className="brand-item steelseries">STEELSERIES</div>
+            <div className="brand-item nzxt">NZXT</div>
+            <div className="brand-item coolermaster">COOLER MASTER</div>
+            <div className="brand-item thermaltake">THERMALTAKE</div>
+            <div className="brand-item elgato">ELGATO</div>
+            <div className="brand-item blue">BLUE</div>
+          </div>
+          {/* Duplicate for seamless loop */}
+          <div className="brand-slide">
+            <div className="brand-item nvidia">NVIDIA</div>
+            <div className="brand-item amd">AMD RYZEN</div>
+            <div className="brand-item intel">INTEL</div>
+            <div className="brand-item razer">RAZER</div>
+            <div className="brand-item logitech">LOGITECH G</div>
+            <div className="brand-item corsair">CORSAIR</div>
+            <div className="brand-item hyperx">HYPERX</div>
+            <div className="brand-item steelseries">STEELSERIES</div>
+            <div className="brand-item nzxt">NZXT</div>
+            <div className="brand-item coolermaster">COOLER MASTER</div>
+            <div className="brand-item thermaltake">THERMALTAKE</div>
+            <div className="brand-item elgato">ELGATO</div>
+            <div className="brand-item blue">BLUE</div>
+          </div>
+        </div>
+      </section>
+
       {/* Slogan Band */}
       <section className="slogan-band">
         <div className="container">
