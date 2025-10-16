@@ -675,3 +675,92 @@
   }
 }
 </style>
+
+<script>
+// Product Card Image Slider
+document.addEventListener('DOMContentLoaded', function() {
+  const productSliders = document.querySelectorAll('[data-product-slider]');
+  
+  productSliders.forEach(sliderContainer => {
+    const slides = sliderContainer.querySelectorAll('.slide');
+    const dots = sliderContainer.querySelectorAll('.dot');
+    const prevBtn = sliderContainer.querySelector('.prev');
+    const nextBtn = sliderContainer.querySelector('.next');
+    
+    if (slides.length <= 1) return; // Skip if only one image
+    
+    let currentSlide = 0;
+    let autoplayInterval;
+    
+    function showSlide(index) {
+      // Remove active class from all slides and dots
+      slides.forEach(s => s.classList.remove('active'));
+      dots.forEach(d => d.classList.remove('active'));
+      
+      // Add active class to current slide and dot
+      if (slides[index]) slides[index].classList.add('active');
+      if (dots[index]) dots[index].classList.add('active');
+      
+      currentSlide = index;
+    }
+    
+    function nextSlide() {
+      let next = (currentSlide + 1) % slides.length;
+      showSlide(next);
+    }
+    
+    function prevSlide() {
+      let prev = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(prev);
+    }
+    
+    function startAutoplay() {
+      autoplayInterval = setInterval(nextSlide, 3000); // Change every 3 seconds
+    }
+    
+    function stopAutoplay() {
+      clearInterval(autoplayInterval);
+    }
+    
+    // Next button
+    if (nextBtn) {
+      nextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        stopAutoplay();
+        nextSlide();
+        startAutoplay();
+      });
+    }
+    
+    // Previous button
+    if (prevBtn) {
+      prevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        stopAutoplay();
+        prevSlide();
+        startAutoplay();
+      });
+    }
+    
+    // Dot navigation
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        stopAutoplay();
+        showSlide(index);
+        startAutoplay();
+      });
+    });
+    
+    // Pause autoplay on hover
+    sliderContainer.addEventListener('mouseenter', stopAutoplay);
+    sliderContainer.addEventListener('mouseleave', startAutoplay);
+    
+    // Start autoplay
+    startAutoplay();
+  });
+});
+</script>
