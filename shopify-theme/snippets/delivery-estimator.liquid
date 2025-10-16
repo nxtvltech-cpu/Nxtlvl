@@ -1,0 +1,834 @@
+{%- comment -%}
+  NXTLVL Gaming Delivery Estimator
+  
+  Usage:
+  {% render 'delivery-estimator', product: product %}
+{%- endcomment -%}
+
+<div class="delivery-estimator">
+  <div class="delivery-header">
+    <div class="delivery-icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <rect x="1" y="3" width="15" height="13"/>
+        <polygon points="16,6 22,6 19,13 16,13"/>
+        <circle cx="5.5" cy="18.5" r="2.5"/>
+        <circle cx="18.5" cy="18.5" r="2.5"/>
+      </svg>
+    </div>
+    <h3>🚀 Gaming Gear Delivery</h3>
+  </div>
+  
+  <div class="delivery-input-section">
+    <div class="location-input">
+      <label for="delivery-zip">Enter your ZIP/Postal Code:</label>
+      <div class="input-group">
+        <input 
+          type="text" 
+          id="delivery-zip" 
+          placeholder="e.g., 90210 or K1A 0A6"
+          maxlength="10"
+          autocomplete="postal-code"
+        >
+        <button type="button" id="check-delivery" class="check-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <polyline points="20,6 9,17 4,12"/>
+          </svg>
+          Check
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="delivery-options" id="delivery-options" style="display: none;">
+    <h4>📦 Shipping Options Available</h4>
+    
+    <div class="shipping-methods">
+      <div class="shipping-option" data-method="standard">
+        <div class="shipping-info">
+          <div class="shipping-name">
+            <span class="method-icon">📦</span>
+            <span>Standard Gaming Shipping</span>
+            <span class="shipping-price">FREE</span>
+          </div>
+          <div class="delivery-estimate">
+            <span class="delivery-date" id="standard-date">5-7 business days</span>
+            <span class="delivery-note">Free on orders $150+</span>
+          </div>
+        </div>
+        <div class="shipping-features">
+          <span class="feature">✅ Tracking included</span>
+          <span class="feature">📱 SMS updates</span>
+        </div>
+      </div>
+
+      <div class="shipping-option premium" data-method="express">
+        <div class="shipping-info">
+          <div class="shipping-name">
+            <span class="method-icon">⚡</span>
+            <span>Express Gaming Rush</span>
+            <span class="shipping-price">$19.99</span>
+          </div>
+          <div class="delivery-estimate">
+            <span class="delivery-date" id="express-date">2-3 business days</span>
+            <span class="delivery-note">Perfect for urgent gaming setups</span>
+          </div>
+        </div>
+        <div class="shipping-features">
+          <span class="feature">⚡ Priority processing</span>
+          <span class="feature">📱 Real-time tracking</span>
+          <span class="feature">📞 Phone support</span>
+        </div>
+      </div>
+
+      <div class="shipping-option premium-plus" data-method="overnight">
+        <div class="shipping-info">
+          <div class="shipping-name">
+            <span class="method-icon">🚀</span>
+            <span>NXTLVL Overnight</span>
+            <span class="shipping-price">$39.99</span>
+          </div>
+          <div class="delivery-estimate">
+            <span class="delivery-date" id="overnight-date">Next business day</span>
+            <span class="delivery-note">When you can't wait to level up!</span>
+          </div>
+        </div>
+        <div class="shipping-features">
+          <span class="feature">🚀 Overnight delivery</span>
+          <span class="feature">🎯 Signature required</span>
+          <span class="feature">⭐ Priority support</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="delivery-map" id="delivery-map">
+      <div class="map-container">
+        <div class="location-info">
+          <div class="warehouse-location">
+            <span class="location-icon">🏭</span>
+            <div class="location-details">
+              <strong>Shipping from:</strong>
+              <span id="warehouse-name">NXTLVL Gaming Warehouse</span>
+              <span id="warehouse-location" class="location-text">Calculating optimal route...</span>
+            </div>
+          </div>
+          <div class="route-line"></div>
+          <div class="customer-location">
+            <span class="location-icon">🏠</span>
+            <div class="location-details">
+              <strong>Delivering to:</strong>
+              <span id="customer-location-name">Your Gaming Setup</span>
+              <span id="customer-address" class="location-text">--</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="delivery-guarantees">
+      <div class="guarantee-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        <span>Safe & Secure Packaging</span>
+      </div>
+      <div class="guarantee-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12,6 12,12 16,14"/>
+        </svg>
+        <span>Real-time Tracking Updates</span>
+      </div>
+      <div class="guarantee-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M9 12l2 2 4-4"/>
+          <path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c2.21 0 4.21.8 5.79 2.13"/>
+        </svg>
+        <span>Gaming Gear Protection</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="delivery-error" id="delivery-error" style="display: none;">
+    <div class="error-content">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="12" y1="8" x2="12" y2="12"/>
+        <line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+      <p>Unable to estimate delivery for this location. Please contact our gaming support team for assistance.</p>
+    </div>
+  </div>
+</div>
+
+<style>
+.delivery-estimator {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.delivery-estimator::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--nx-green), var(--nx-purple));
+}
+
+.delivery-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.delivery-icon {
+  color: var(--nx-green);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.delivery-header h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0;
+}
+
+.delivery-input-section {
+  margin-bottom: 2rem;
+}
+
+.location-input label {
+  display: block;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+}
+
+.input-group {
+  display: flex;
+  gap: 0.5rem;
+  align-items: stretch;
+}
+
+.input-group input {
+  flex: 1;
+  padding: 0.875rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+  border-color: var(--nx-green);
+  box-shadow: 0 0 0 2px rgba(0, 255, 133, 0.2);
+}
+
+.input-group input::placeholder {
+  color: var(--muted);
+}
+
+.check-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--nx-green);
+  color: var(--bg);
+  border: none;
+  padding: 0.875rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.check-btn:hover {
+  background: var(--nx-purple);
+  transform: translateY(-1px);
+}
+
+.delivery-options {
+  animation: slideIn 0.5s ease-out;
+}
+
+.delivery-options h4 {
+  color: var(--nx-green);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.shipping-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.shipping-option {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.shipping-option:hover {
+  border-color: var(--nx-green);
+  background: rgba(0, 255, 133, 0.05);
+}
+
+.shipping-option.premium {
+  border-color: rgba(255, 193, 7, 0.3);
+}
+
+.shipping-option.premium-plus {
+  border-color: rgba(138, 43, 226, 0.5);
+  background: rgba(138, 43, 226, 0.05);
+}
+
+.shipping-info {
+  margin-bottom: 1rem;
+}
+
+.shipping-name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.shipping-name span:first-child {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.method-icon {
+  font-size: 1.2rem;
+}
+
+.shipping-price {
+  color: var(--nx-green);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.delivery-estimate {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.delivery-date {
+  color: var(--nx-green);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.delivery-note {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.shipping-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.feature {
+  color: var(--muted);
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.delivery-map {
+  background: rgba(0, 255, 133, 0.05);
+  border: 1px solid rgba(0, 255, 133, 0.2);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.map-container {
+  position: relative;
+}
+
+.location-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.warehouse-location,
+.customer-location {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.location-icon {
+  font-size: 1.5rem;
+}
+
+.location-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.location-details strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.location-text {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.route-line {
+  width: 2px;
+  height: 30px;
+  background: linear-gradient(to bottom, var(--nx-green), var(--nx-purple));
+  margin: 0.5rem 0 0.5rem 0.75rem;
+  position: relative;
+  animation: routeAnimation 2s ease-in-out infinite;
+}
+
+.route-line::after {
+  content: '↓';
+  position: absolute;
+  bottom: -5px;
+  left: -7px;
+  color: var(--nx-purple);
+  font-weight: bold;
+  animation: bounce 1s ease-in-out infinite;
+}
+
+.delivery-guarantees {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.guarantee-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.guarantee-item svg {
+  color: var(--nx-green);
+}
+
+.delivery-error {
+  text-align: center;
+  padding: 2rem;
+}
+
+.error-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  color: var(--muted);
+}
+
+.error-content svg {
+  color: #FF6B6B;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes routeAnimation {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@media (max-width: 768px) {
+  .delivery-estimator {
+    padding: 1.5rem;
+  }
+  
+  .input-group {
+    flex-direction: column;
+  }
+  
+  .shipping-name {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .shipping-features {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .delivery-guarantees {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<script>
+// Delivery Estimator Functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const deliveryEstimator = {
+    // Warehouse locations for realistic shipping calculations
+    warehouses: {
+      'US': { name: 'NXTLVL Gaming Hub - California', location: 'Los Angeles, CA', coords: [34.0522, -118.2437] },
+      'CA': { name: 'NXTLVL Gaming Hub - Toronto', location: 'Toronto, ON', coords: [43.6532, -79.3832] },
+      'UK': { name: 'NXTLVL Gaming Hub - London', location: 'London, UK', coords: [51.5074, -0.1278] },
+      'default': { name: 'NXTLVL Gaming Warehouse', location: 'Processing Center', coords: [0, 0] }
+    },
+
+    init: function() {
+      this.bindEvents();
+    },
+
+    bindEvents: function() {
+      const checkButton = document.getElementById('check-delivery');
+      const zipInput = document.getElementById('delivery-zip');
+
+      if (checkButton) {
+        checkButton.addEventListener('click', () => {
+          this.checkDelivery();
+        });
+      }
+
+      if (zipInput) {
+        zipInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            this.checkDelivery();
+          }
+        });
+
+        // Format input as user types
+        zipInput.addEventListener('input', (e) => {
+          this.formatZipCode(e.target);
+        });
+      }
+    },
+
+    formatZipCode: function(input) {
+      let value = input.value.replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
+      
+      // US ZIP code format
+      if (/^\d{5}$/.test(value)) {
+        input.value = value;
+      }
+      // US ZIP+4 format
+      else if (/^\d{5}\d{1,4}$/.test(value)) {
+        input.value = value.substring(0, 5) + '-' + value.substring(5);
+      }
+      // Canadian postal code format
+      else if (/^[A-Z]\d[A-Z]\d[A-Z]\d$/.test(value)) {
+        input.value = value.substring(0, 3) + ' ' + value.substring(3);
+      }
+      else {
+        input.value = value;
+      }
+    },
+
+    checkDelivery: function() {
+      const zipInput = document.getElementById('delivery-zip');
+      const deliveryOptions = document.getElementById('delivery-options');
+      const deliveryError = document.getElementById('delivery-error');
+      
+      if (!zipInput.value.trim()) {
+        this.showError('Please enter a valid ZIP or postal code');
+        return;
+      }
+
+      // Show loading state
+      const checkBtn = document.getElementById('check-delivery');
+      const originalText = checkBtn.innerHTML;
+      checkBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="spinning"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4"/></svg>Checking...';
+      checkBtn.disabled = true;
+
+      // Simulate API call delay
+      setTimeout(() => {
+        const location = this.parseLocation(zipInput.value);
+        
+        if (location.valid) {
+          this.showDeliveryOptions(location);
+          deliveryError.style.display = 'none';
+          deliveryOptions.style.display = 'block';
+        } else {
+          this.showError('Invalid ZIP or postal code format');
+        }
+
+        // Restore button
+        checkBtn.innerHTML = originalText;
+        checkBtn.disabled = false;
+      }, 1000);
+    },
+
+    parseLocation: function(input) {
+      const cleaned = input.replace(/\s+/g, '').toUpperCase();
+      
+      // US ZIP code patterns
+      if (/^\d{5}(-?\d{4})?$/.test(cleaned)) {
+        const state = this.getStateFromZip(cleaned.substring(0, 5));
+        return {
+          valid: true,
+          country: 'US',
+          region: state,
+          type: 'zip',
+          display: input.trim()
+        };
+      }
+      
+      // Canadian postal code pattern
+      if (/^[A-Z]\d[A-Z]\d[A-Z]\d$/.test(cleaned)) {
+        const province = this.getProvinceFromPostal(cleaned);
+        return {
+          valid: true,
+          country: 'CA',
+          region: province,
+          type: 'postal',
+          display: input.trim()
+        };
+      }
+      
+      // UK postal code (basic pattern)
+      if (/^[A-Z]{1,2}\d[A-Z\d]?\s?\d[A-Z]{2}$/i.test(input.trim())) {
+        return {
+          valid: true,
+          country: 'UK',
+          region: 'England',
+          type: 'postal',
+          display: input.trim()
+        };
+      }
+
+      return { valid: false };
+    },
+
+    getStateFromZip: function(zip) {
+      const zipNum = parseInt(zip);
+      if (zipNum >= 90000) return 'California';
+      if (zipNum >= 80000) return 'Colorado';
+      if (zipNum >= 70000) return 'Texas';
+      if (zipNum >= 60000) return 'Illinois';
+      if (zipNum >= 50000) return 'Iowa';
+      if (zipNum >= 40000) return 'Kentucky';
+      if (zipNum >= 30000) return 'Georgia';
+      if (zipNum >= 20000) return 'Washington DC';
+      if (zipNum >= 10000) return 'New York';
+      return 'United States';
+    },
+
+    getProvinceFromPostal: function(postal) {
+      const first = postal.charAt(0);
+      const provinces = {
+        'A': 'Newfoundland',
+        'B': 'Nova Scotia',
+        'C': 'Prince Edward Island',
+        'E': 'New Brunswick',
+        'G': 'Quebec',
+        'H': 'Quebec',
+        'J': 'Quebec',
+        'K': 'Ontario',
+        'L': 'Ontario',
+        'M': 'Ontario',
+        'N': 'Ontario',
+        'P': 'Ontario',
+        'R': 'Manitoba',
+        'S': 'Saskatchewan',
+        'T': 'Alberta',
+        'V': 'British Columbia',
+        'X': 'Northwest Territories',
+        'Y': 'Yukon'
+      };
+      return provinces[first] || 'Canada';
+    },
+
+    showDeliveryOptions: function(location) {
+      this.updateWarehouseInfo(location);
+      this.updateCustomerLocation(location);
+      this.calculateDeliveryDates(location);
+    },
+
+    updateWarehouseInfo: function(location) {
+      const warehouse = this.warehouses[location.country] || this.warehouses.default;
+      
+      const warehouseName = document.getElementById('warehouse-name');
+      const warehouseLocation = document.getElementById('warehouse-location');
+      
+      if (warehouseName) warehouseName.textContent = warehouse.name;
+      if (warehouseLocation) warehouseLocation.textContent = warehouse.location;
+    },
+
+    updateCustomerLocation: function(location) {
+      const customerLocationName = document.getElementById('customer-location-name');
+      const customerAddress = document.getElementById('customer-address');
+      
+      if (customerLocationName) customerLocationName.textContent = 'Your Gaming Setup';
+      if (customerAddress) customerAddress.textContent = `${location.region}, ${location.country}`;
+    },
+
+    calculateDeliveryDates: function(location) {
+      const today = new Date();
+      
+      // Calculate business days (excluding weekends)
+      const addBusinessDays = (date, days) => {
+        const result = new Date(date);
+        let addedDays = 0;
+        
+        while (addedDays < days) {
+          result.setDate(result.getDate() + 1);
+          if (result.getDay() !== 0 && result.getDay() !== 6) {
+            addedDays++;
+          }
+        }
+        return result;
+      };
+
+      // Adjust delivery times based on location
+      let standardDays = 5;
+      let expressDays = 2;
+      let overnightDays = 1;
+
+      if (location.country === 'CA') {
+        standardDays += 2;
+        expressDays += 1;
+      } else if (location.country === 'UK') {
+        standardDays += 3;
+        expressDays += 2;
+        overnightDays += 1;
+      }
+
+      // Calculate dates
+      const standardDate = addBusinessDays(today, standardDays);
+      const expressDate = addBusinessDays(today, expressDays);
+      const overnightDate = addBusinessDays(today, overnightDays);
+
+      // Format dates
+      const formatOptions = { 
+        weekday: 'short', 
+        month: 'short', 
+        day: 'numeric'
+      };
+
+      // Update delivery date displays
+      const standardEl = document.getElementById('standard-date');
+      const expressEl = document.getElementById('express-date');
+      const overnightEl = document.getElementById('overnight-date');
+
+      if (standardEl) {
+        standardEl.innerHTML = `
+          <strong>${standardDate.toLocaleDateString('en-US', formatOptions)}</strong>
+          <small>(${standardDays-1}-${standardDays+2} business days)</small>
+        `;
+      }
+
+      if (expressEl) {
+        expressEl.innerHTML = `
+          <strong>${expressDate.toLocaleDateString('en-US', formatOptions)}</strong>
+          <small>(${expressDays}-${expressDays+1} business days)</small>
+        `;
+      }
+
+      if (overnightEl) {
+        if (location.country === 'US') {
+          overnightEl.innerHTML = `
+            <strong>${overnightDate.toLocaleDateString('en-US', formatOptions)}</strong>
+            <small>(Next business day)</small>
+          `;
+        } else {
+          overnightEl.innerHTML = `
+            <strong>${expressDate.toLocaleDateString('en-US', formatOptions)}</strong>
+            <small>(Express international)</small>
+          `;
+        }
+      }
+    },
+
+    showError: function(message) {
+      const deliveryOptions = document.getElementById('delivery-options');
+      const deliveryError = document.getElementById('delivery-error');
+      
+      deliveryOptions.style.display = 'none';
+      deliveryError.style.display = 'block';
+      
+      const errorMessage = deliveryError.querySelector('p');
+      if (errorMessage) {
+        errorMessage.textContent = message;
+      }
+    }
+  };
+
+  // Initialize delivery estimator
+  deliveryEstimator.init();
+
+  // Add spinning animation for loading button
+  const style = document.createElement('style');
+  style.textContent = `
+    .spinning {
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+  `;
+  document.head.appendChild(style);
+});
+</script>
