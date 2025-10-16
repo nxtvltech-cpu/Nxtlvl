@@ -10,7 +10,7 @@ import sys
 from typing import List, Dict, Any
 
 # API Configuration
-BASE_URL = "https://gaming-ecom-1.preview.emergentagent.com/api"
+BASE_URL = "https://nxtlvl-gaming-1.preview.emergentagent.com/api"
 
 # Expected new products to test
 EXPECTED_NEW_PRODUCTS = [
