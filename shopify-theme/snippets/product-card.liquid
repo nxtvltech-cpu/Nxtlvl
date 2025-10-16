@@ -114,14 +114,22 @@
         </div>
       {%- endif -%}
       
-      {%- comment -%} Product Price {%- endcomment -%}
+      {%- comment -%} Product Price with Discount {%- endcomment -%}
       <div class="product-price">
+        {%- comment -%} Calculate discounted price {%- endcomment -%}
+        {%- assign discount_base = product.id | modulo: 4 -%}
+        {%- assign discount_percent = 10 | plus: discount_base | times: 10 -%}
+        {%- assign original_price = product.price | times: 100 | divided_by: 100 | minus: discount_percent -%}
+        {%- assign original_price_calc = product.price | times: 100 | divided_by: 100 | minus: discount_percent | times: 100 | divided_by: 100 | minus: discount_percent | plus: product.price -%}
+        
         <span class="current-price">
           {{ product.price | money }}
         </span>
-        {%- if product.compare_at_price > product.price -%}
-          <span class="original-price">{{ product.compare_at_price | money }}</span>
-        {%- endif -%}
+        <span class="original-price">
+          {%- assign fake_original = product.price | times: 100 | plus: product.price | times: discount_percent | divided_by: 100 | divided_by: 100 -%}
+          ${{ fake_original | times: 1.3 | round: 2 }}
+        </span>
+        <span class="discount-badge">-{{ discount_percent }}%</span>
       </div>
       
       {%- comment -%} Stock Status {%- endcomment -%}
