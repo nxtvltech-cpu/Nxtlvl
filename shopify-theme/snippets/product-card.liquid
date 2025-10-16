@@ -384,7 +384,7 @@
   top: 0.75rem;
   left: 0.75rem;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 0.5rem;
   z-index: 2;
 }
@@ -392,19 +392,43 @@
 .badge {
   background: var(--nx-green);
   color: var(--bg);
-  padding: 0.25rem 0.75rem;
-  border-radius: 12px;
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  animation: badge-pulse 2s ease-in-out infinite;
+  width: fit-content;
 }
 
-.badge.sale {
-  background: #FF3366;
+.badge.sale-badge {
+  background: linear-gradient(135deg, #FF3366, #FF0044);
+  font-size: 0.85rem;
+  padding: 0.4rem 1rem;
 }
 
-.performance-badge {
-  background: linear-gradient(135deg, var(--nx-green), var(--nx-purple)) !important;
+.badge.sale-text {
+  background: var(--nx-green);
+  font-size: 0.7rem;
+}
+
+.badge.limited-badge {
+  background: linear-gradient(135deg, var(--nx-purple), #B048FF);
+  font-size: 0.65rem;
+  animation: badge-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes badge-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(255, 51, 102, 0.5);
+  }
 }
 
 .product-info {
