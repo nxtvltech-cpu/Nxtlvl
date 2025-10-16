@@ -348,7 +348,36 @@
     "settings": [
       {
         "type": "header",
-        "content": "Social Media Links"
+        "content": "Floating Social Widget"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_social_float",
+        "label": "Enable Floating Social Widget",
+        "default": true,
+        "info": "Show floating social media button on all pages"
+      },
+      {
+        "type": "text",
+        "id": "instagram_url",
+        "label": "Instagram URL",
+        "info": "Full URL including https:// (e.g., https://instagram.com/nxtlvlgaming)"
+      },
+      {
+        "type": "text",
+        "id": "tiktok_url",
+        "label": "TikTok URL",
+        "info": "Full URL including https:// (e.g., https://tiktok.com/@nxtlvlgaming)"
+      },
+      {
+        "type": "text",
+        "id": "whatsapp_number",
+        "label": "WhatsApp Number",
+        "info": "Include country code (e.g., 14155551234 for US number)"
+      },
+      {
+        "type": "header",
+        "content": "Footer Social Media Links"
       },
       {
         "type": "text",
