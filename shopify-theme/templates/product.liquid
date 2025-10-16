@@ -1,0 +1,409 @@
+{%- comment -%}
+  NXTLVL Gaming Product Template
+{%- endcomment -%}
+
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
+
+<div class="product-page">
+  <div class="container">
+    <div class="product-grid-layout">
+      {%- comment -%} Product Images {%- endcomment -%}
+      <div class="product-media">
+        <div class="product-gallery">
+          {%- if product.media.size > 0 -%}
+            <div class="gallery-main">
+              <img 
+                id="product-featured-image"
+                src="{{ featured_image | img_url: '800x800' }}"
+                alt="{{ featured_image.alt | default: product.title | escape }}"
+                width="800"
+                height="800"
+              >
+            </div>
+            
+            {%- if product.media.size > 1 -%}
+              <div class="gallery-thumbnails">
+                {%- for media in product.media limit: 8 -%}
+                  <button 
+                    type="button"
+                    class="thumbnail {% if media == featured_image %}active{% endif %}"
+                    data-media-id="{{ media.id }}"
+                    data-media-url="{{ media | img_url: '800x800' }}"
+                  >
+                    <img 
+                      src="{{ media | img_url: '100x100' }}"
+                      alt="{{ media.alt | default: product.title | escape }}"
+                      width="100"
+                      height="100"
+                      loading="lazy"
+                    >
+                  </button>
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+          {%- endif -%}
+        </div>
+        
+        {%- comment -%} Product Badges {%- endcomment -%}
+        {%- if product.tags.size > 0 or product.compare_at_price > product.price -%}
+          <div class="product-badges">
+            {%- if product.compare_at_price > product.price -%}
+              {%- assign savings = product.compare_at_price | minus: product.price -%}
+              {%- assign savings_percent = savings | times: 100 | divided_by: product.compare_at_price -%}
+              <span class="badge sale">{{ savings_percent | round }}% OFF</span>
+            {%- endif -%}
+            
+            {%- for tag in product.tags limit: 3 -%}
+              {%- if tag contains 'badge:' -%}
+                {%- assign badge_text = tag | remove: 'badge:' -%}
+                <span class="badge">{{ badge_text }}</span>
+              {%- elsif tag == 'gaming' -%}
+                <span class="badge performance-badge">🎮 Gaming</span>
+              {%- elsif tag == 'rgb' -%}
+                <span class="badge performance-badge">🌈 RGB</span>
+              {%- elsif tag == 'high-performance' -%}
+                <span class="badge performance-badge">⚡ High Performance</span>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+      
+      {%- comment -%} Product Information {%- endcomment -%}
+      <div class="product-info">
+        {%- if product.vendor != blank -%}
+          <div class="product-brand">{{ product.vendor }}</div>
+        {%- endif -%}
+        
+        <h1 class="product-title">{{ product.title }}</h1>
+        
+        {%- comment -%} Product Rating {%- endcomment -%}
+        <div class="product-rating">
+          <div class="stars">
+            <span class="star filled">★</span>
+            <span class="star filled">★</span>
+            <span class="star filled">★</span>
+            <span class="star filled">★</span>
+            <span class="star">☆</span>
+          </div>
+          <span class="rating-text">({{ 25 | plus: product.id | modulo: 100 }} reviews)</span>
+        </div>
+        
+        {%- comment -%} Product Price {%- endcomment -%}
+        <div class="product-price">
+          <span class="current-price" id="product-price">
+            {{ current_variant.price | money }}
+          </span>
+          {%- if current_variant.compare_at_price > current_variant.price -%}
+            <span class="original-price" id="product-compare-price">
+              {{ current_variant.compare_at_price | money }}
+            </span>
+          {%- endif -%}
+        </div>
+        
+        {%- comment -%} Product Form {%- endcomment -%}
+        <form action="/cart/add" method="post" enctype="multipart/form-data" class="product-form">
+          {%- comment -%} Add to Cart Button {%- endcomment -%}
+          <div class="product-actions">
+            <div class="quantity-selector">
+              <label for="quantity">Quantity</label>
+              <div class="quantity-input">
+                <button type="button" class="quantity-btn minus">−</button>
+                <input type="number" name="quantity" id="quantity" value="1" min="1" class="quantity-number">
+                <button type="button" class="quantity-btn plus">+</button>
+              </div>
+            </div>
+            
+            <button 
+              type="submit" 
+              name="add" 
+              class="add-to-cart-btn btn-primary"
+              {%- if current_variant.available == false %} disabled{%- endif -%}
+            >
+              <span class="btn-text">
+                {%- if current_variant.available -%}
+                  Add to Cart - {{ current_variant.price | money }}
+                {%- else -%}
+                  Sold Out
+                {%- endif -%}
+              </span>
+            </button>
+            
+            <input type="hidden" name="id" value="{{ current_variant.id }}">
+          </div>
+        </form>
+        
+        {%- comment -%} Product Description {%- endcomment -%}
+        <div class="product-description">
+          {{ product.description }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.product-page {
+  padding: 2rem 0;
+  margin-top: 110px;
+}
+
+.product-grid-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-bottom: 4rem;
+}
+
+.product-gallery {
+  position: sticky;
+  top: 2rem;
+}
+
+.gallery-main {
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.gallery-main img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.gallery-thumbnails {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.thumbnail {
+  width: 80px;
+  height: 80px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: none;
+  padding: 0;
+}
+
+.thumbnail:hover,
+.thumbnail.active {
+  border-color: var(--nx-green);
+}
+
+.thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-info {
+  padding-left: 2rem;
+}
+
+.product-brand {
+  color: var(--nx-green);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.product-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.product-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.stars {
+  display: flex;
+  gap: 0.125rem;
+}
+
+.star {
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.star.filled {
+  color: #FFD700;
+}
+
+.product-price {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.current-price {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--nx-green);
+  position: relative;
+}
+
+.current-price::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--nx-green), var(--nx-purple));
+  animation: price-shimmer 2s ease-in-out infinite;
+}
+
+.original-price {
+  font-size: 1.2rem;
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.product-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: end;
+  margin-bottom: 2rem;
+}
+
+.quantity-selector {
+  flex: 0 0 120px;
+}
+
+.quantity-selector label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.quantity-input {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.quantity-btn {
+  background: var(--card-bg);
+  border: none;
+  color: var(--text);
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.quantity-btn:hover {
+  background: var(--nx-green);
+  color: var(--bg);
+}
+
+.quantity-number {
+  background: var(--card-bg);
+  border: none;
+  color: var(--text);
+  padding: 0.75rem;
+  text-align: center;
+  width: 60px;
+  outline: none;
+}
+
+.add-to-cart-btn {
+  flex: 1;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.product-description {
+  color: var(--text);
+  line-height: 1.6;
+  margin-top: 2rem;
+}
+
+@keyframes price-shimmer {
+  0%, 100% { opacity: 1; transform: scaleX(1); }
+  50% { opacity: 0.7; transform: scaleX(1.05); }
+}
+
+@media (max-width: 768px) {
+  .product-grid-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .product-info {
+    padding-left: 0;
+  }
+  
+  .product-title {
+    font-size: 1.5rem;
+  }
+  
+  .product-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .quantity-selector {
+    flex: none;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Gallery thumbnails
+  const thumbnails = document.querySelectorAll('.thumbnail');
+  const featuredImage = document.getElementById('product-featured-image');
+  
+  thumbnails.forEach(thumbnail => {
+    thumbnail.addEventListener('click', function() {
+      thumbnails.forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+      
+      const newImageUrl = this.dataset.mediaUrl;
+      if (featuredImage && newImageUrl) {
+        featuredImage.src = newImageUrl;
+      }
+    });
+  });
+  
+  // Quantity buttons
+  const minusBtn = document.querySelector('.quantity-btn.minus');
+  const plusBtn = document.querySelector('.quantity-btn.plus');
+  const quantityInput = document.getElementById('quantity');
+  
+  if (minusBtn && quantityInput) {
+    minusBtn.addEventListener('click', function() {
+      let currentValue = parseInt(quantityInput.value) || 1;
+      if (currentValue > 1) {
+        quantityInput.value = currentValue - 1;
+      }
+    });
+  }
+  
+  if (plusBtn && quantityInput) {
+    plusBtn.addEventListener('click', function() {
+      let currentValue = parseInt(quantityInput.value) || 1;
+      quantityInput.value = currentValue + 1;
+    });
+  }
+});
+</script>
