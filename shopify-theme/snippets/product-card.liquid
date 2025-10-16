@@ -631,8 +631,17 @@
   }
 }
 
+@keyframes discount-glow {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(255, 51, 102, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 16px rgba(255, 51, 102, 0.8);
+  }
+}
+
 @media (max-width: 768px) {
-  .product-image {
+  .product-image-slider {
     height: 200px;
   }
   
@@ -645,7 +654,7 @@
   }
   
   .current-price {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
   
   .quick-actions {
@@ -654,6 +663,15 @@
   
   .quick-action {
     padding: 0.375rem;
+  }
+  
+  .slider-arrow {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .slider-dots {
+    bottom: 0.5rem;
   }
 }
 </style>
