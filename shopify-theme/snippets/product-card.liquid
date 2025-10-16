@@ -8,27 +8,44 @@
 {%- unless product == blank -%}
   <div class="product-card" data-product-id="{{ product.id }}">
     <a href="{{ product.url }}" class="product-link">
-      <div class="product-image">
-        {%- if product.featured_media -%}
-          <img 
-            src="{{ product.featured_media | img_url: '400x400' }}" 
-            alt="{{ product.featured_media.alt | default: product.title | escape }}"
-            loading="lazy"
-            width="400"
-            height="400"
-          >
-          
-          {%- comment -%} Show second image on hover if available {%- endcomment -%}
-          {%- if product.media.size > 1 -%}
-            <img 
-              src="{{ product.media[1] | img_url: '400x400' }}" 
-              alt="{{ product.media[1].alt | default: product.title | escape }}"
-              class="product-image-hover"
-              loading="lazy"
-              width="400"
-              height="400"
-            >
-          {%- endif -%}
+      <div class="product-image-slider" data-product-slider>
+        {%- if product.media.size > 0 -%}
+          <div class="slider-container">
+            <div class="slides">
+              {%- for media in product.media limit: 4 -%}
+                <div class="slide {% if forloop.first %}active{% endif %}">
+                  <img 
+                    src="{{ media | img_url: '400x400' }}" 
+                    alt="{{ media.alt | default: product.title | escape }}"
+                    loading="lazy"
+                    width="400"
+                    height="400"
+                  >
+                </div>
+              {%- endfor -%}
+            </div>
+            
+            {%- comment -%} Slider Controls {%- endcomment -%}
+            {%- if product.media.size > 1 -%}
+              <button type="button" class="slider-arrow prev" aria-label="Previous image">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="15,18 9,12 15,6"/>
+                </svg>
+              </button>
+              <button type="button" class="slider-arrow next" aria-label="Next image">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="9,18 15,12 9,6"/>
+                </svg>
+              </button>
+              
+              {%- comment -%} Slider Dots {%- endcomment -%}
+              <div class="slider-dots">
+                {%- for media in product.media limit: 4 -%}
+                  <button type="button" class="dot {% if forloop.first %}active{% endif %}" data-slide="{{ forloop.index0 }}" aria-label="Go to slide {{ forloop.index }}"></button>
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+          </div>
         {%- else -%}
           <div class="product-image-placeholder">
             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -39,29 +56,20 @@
           </div>
         {%- endif -%}
         
-        {%- comment -%} Product Badges {%- endcomment -%}
-        {%- if product.tags.size > 0 or product.compare_at_price > product.price -%}
-          <div class="product-badges">
-            {%- if product.compare_at_price > product.price -%}
-              {%- assign savings = product.compare_at_price | minus: product.price -%}
-              {%- assign savings_percent = savings | times: 100 | divided_by: product.compare_at_price -%}
-              <span class="badge sale">{{ savings_percent | round }}% OFF</span>
-            {%- endif -%}
-            
-            {%- for tag in product.tags limit: 2 -%}
-              {%- if tag contains 'badge:' -%}
-                {%- assign badge_text = tag | remove: 'badge:' -%}
-                <span class="badge">{{ badge_text }}</span>
-              {%- elsif tag == 'new' -%}
-                <span class="badge">New</span>
-              {%- elsif tag == 'bestseller' -%}
-                <span class="badge">Best Seller</span>
-              {%- elsif tag == 'gaming' -%}
-                <span class="badge performance-badge">Gaming</span>
-              {%- endif -%}
-            {%- endfor -%}
-          </div>
-        {%- endif -%}
+        {%- comment -%} Product Badges with Discount {%- endcomment -%}
+        <div class="product-badges">
+          {%- comment -%} Generate random discount between 10-40% {%- endcomment -%}
+          {%- assign discount_base = product.id | modulo: 4 -%}
+          {%- assign discount_percent = 10 | plus: discount_base | times: 10 -%}
+          <span class="badge sale-badge">{{ discount_percent }}% OFF</span>
+          <span class="badge sale-text">SALE</span>
+          
+          {%- comment -%} Limited Time Badge {%- endcomment -%}
+          {%- assign show_limited = product.id | modulo: 2 -%}
+          {%- if show_limited == 0 -%}
+            <span class="badge limited-badge">LIMITED TIME</span>
+          {%- endif -%}
+        </div>
       </div>
     </a>
     
