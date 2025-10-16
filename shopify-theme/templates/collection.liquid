@@ -1,0 +1,284 @@
+{%- comment -%}
+  NXTLVL Gaming Collection Template
+{%- endcomment -%}
+
+{%- paginate collection.products by 24 -%}
+
+<div class="collection-page">
+  <div class="container">
+    {%- comment -%} Collection Header {%- endcomment -%}
+    <div class="collection-header">
+      <h1 class="collection-title gaming-category">{{ collection.title }}</h1>
+      {%- if collection.description != blank -%}
+        <div class="collection-description">
+          {{ collection.description }}
+        </div>
+      {%- endif -%}
+      
+      <div class="collection-meta">
+        <span class="product-count">{{ collection.products_count }} products</span>
+        {%- if collection.image -%}
+          <div class="collection-image">
+            <img 
+              src="{{ collection.image | img_url: '200x200' }}" 
+              alt="{{ collection.title | escape }}"
+              width="200"
+              height="200"
+              loading="lazy"
+            >
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+    
+    {%- comment -%} Sort Section {%- endcomment -%}
+    <div class="collection-toolbar">
+      <div class="sort-section">
+        <label for="sort-select">Sort by:</label>
+        <select id="sort-select" class="sort-select">
+          <option value="manual">Featured</option>
+          <option value="best-selling">Best Selling</option>
+          <option value="title-ascending">A-Z</option>
+          <option value="title-descending">Z-A</option>
+          <option value="price-ascending">Price: Low to High</option>
+          <option value="price-descending">Price: High to Low</option>
+          <option value="created-descending">Newest</option>
+        </select>
+      </div>
+    </div>
+    
+    {%- comment -%} Products Grid {%- endcomment -%}
+    <div class="products-section">
+      {%- if collection.products.size > 0 -%}
+        <div class="product-grid" id="product-grid">
+          {%- for product in collection.products -%}
+            {% render 'product-card', product: product %}
+          {%- endfor -%}
+        </div>
+        
+        {%- comment -%} Pagination {%- endcomment -%}
+        {%- if paginate.pages > 1 -%}
+          <div class="pagination">
+            {%- if paginate.previous -%}
+              <a href="{{ paginate.previous.url }}" class="pagination-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <polyline points="15,18 9,12 15,6"/>
+                </svg>
+                Previous
+              </a>
+            {%- endif -%}
+            
+            <div class="pagination-numbers">
+              {%- for part in paginate.parts -%}
+                {%- if part.is_link -%}
+                  <a href="{{ part.url }}" class="pagination-number">{{ part.title }}</a>
+                {%- else -%}
+                  <span class="pagination-number current">{{ part.title }}</span>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+            
+            {%- if paginate.next -%}
+              <a href="{{ paginate.next.url }}" class="pagination-btn">
+                Next
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <polyline points="9,18 15,12 9,6"/>
+                </svg>
+              </a>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- else -%}
+        <div class="empty-collection">
+          <div class="empty-content">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="8" x2="12" y2="12"/>
+              <line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            <h3>No products found</h3>
+            <p>Try browsing other categories.</p>
+            <a href="{{ routes.collections_url }}" class="btn-primary">Browse All Products</a>
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{%- endpaginate -%}
+
+<style>
+.collection-page {
+  padding: 2rem 0;
+  margin-top: 110px;
+}
+
+.collection-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.collection-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--text) 0%, var(--nx-green) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.collection-description {
+  color: var(--muted);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+}
+
+.collection-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.product-count {
+  color: var(--nx-green);
+  font-weight: 600;
+}
+
+.collection-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--nx-green);
+}
+
+.collection-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.collection-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.sort-section {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sort-select {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  outline: none;
+}
+
+.sort-select:focus {
+  border-color: var(--nx-green);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.pagination-btn,
+.pagination-number {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.3s ease;
+}
+
+.pagination-btn:hover,
+.pagination-number:hover {
+  border-color: var(--nx-green);
+  color: var(--nx-green);
+}
+
+.pagination-number.current {
+  background: var(--nx-green);
+  color: var(--bg);
+  border-color: var(--nx-green);
+}
+
+.empty-collection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.empty-content {
+  text-align: center;
+  color: var(--muted);
+}
+
+.empty-content svg {
+  margin-bottom: 1rem;
+  color: var(--nx-green);
+}
+
+.empty-content h3 {
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .collection-toolbar {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+  
+  .collection-meta {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .pagination {
+    flex-wrap: wrap;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Sort functionality
+  const sortSelect = document.getElementById('sort-select');
+  if (sortSelect) {
+    sortSelect.addEventListener('change', function() {
+      const url = new URL(window.location);
+      url.searchParams.set('sort_by', this.value);
+      window.location.href = url.toString();
+    });
+  }
+});
+</script>
