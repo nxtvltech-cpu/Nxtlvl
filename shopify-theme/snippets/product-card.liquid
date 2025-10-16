@@ -495,10 +495,11 @@
   gap: 0.75rem;
   margin-bottom: 1rem;
   position: relative;
+  flex-wrap: wrap;
 }
 
 .current-price {
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   font-weight: 700;
   color: var(--nx-green);
   position: relative;
@@ -517,8 +518,19 @@
 
 .original-price {
   font-size: 1rem;
-  color: var(--muted);
+  color: #666;
   text-decoration: line-through;
+  font-weight: 500;
+}
+
+.discount-badge {
+  background: linear-gradient(135deg, #FF3366, #FF0044);
+  color: #FFFFFF;
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  animation: discount-glow 2s ease-in-out infinite;
 }
 
 .stock-status {
