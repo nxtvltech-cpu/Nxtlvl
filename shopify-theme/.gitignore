@@ -1,0 +1,56 @@
+# Git Ignore File for Shopify Theme
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Shopify theme settings (contains store-specific data)
+config/settings_data.json
+
+# Node modules (if using build tools)
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# OS generated files
+.Spotlight-V100
+.Trashes
+ehthumbs_vista.db
+
+# Shopify CLI
+.shopify/
