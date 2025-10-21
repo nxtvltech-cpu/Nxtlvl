@@ -1,0 +1,145 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "title": "NXTLVL",
+        "subtitle": "Take Your Gaming to the Next Level",
+        "button_text": "Shop Now",
+        "button_link": "/collections/all"
+      }
+    },
+    "brand_carousel": {
+      "type": "brand-carousel",
+      "blocks": {
+        "brand_1": {
+          "type": "brand",
+          "settings": {
+            "brand_name": "NVIDIA",
+            "brand_class": "nvidia"
+          }
+        },
+        "brand_2": {
+          "type": "brand",
+          "settings": {
+            "brand_name": "AMD RYZEN",
+            "brand_class": "amd"
+          }
+        },
+        "brand_3": {
+          "type": "brand",
+          "settings": {
+            "brand_name": "INTEL",
+            "brand_class": "intel"
+          }
+        },
+        "brand_4": {
+          "type": "brand",
+          "settings": {
+            "brand_name": "RAZER",
+            "brand_class": "razer"
+          }
+        },
+        "brand_5": {
+          "type": "brand",
+          "settings": {
+            "brand_name": "LOGITECH G",
+            "brand_class": "logitech"
+          }
+        },
+        "brand_6": {
+          "type": "brand",
+          "settings": {
+            "brand_name": "CORSAIR",
+            "brand_class": "corsair"
+          }
+        },
+        "brand_7": {
+          "type": "brand",
+          "settings": {
+            "brand_name": "HYPERX",
+            "brand_class": "hyperx"
+          }
+        },
+        "brand_8": {
+          "type": "brand",
+          "settings": {
+            "brand_name": "STEELSERIES",
+            "brand_class": "steelseries"
+          }
+        },
+        "brand_9": {
+          "type": "brand",
+          "settings": {
+            "brand_name": "NZXT",
+            "brand_class": "nzxt"
+          }
+        },
+        "brand_10": {
+          "type": "brand",
+          "settings": {
+            "brand_name": "COOLER MASTER",
+            "brand_class": "coolermaster"
+          }
+        },
+        "brand_11": {
+          "type": "brand",
+          "settings": {
+            "brand_name": "THERMALTAKE",
+            "brand_class": "thermaltake"
+          }
+        },
+        "brand_12": {
+          "type": "brand",
+          "settings": {
+            "brand_name": "ELGATO",
+            "brand_class": "elgato"
+          }
+        },
+        "brand_13": {
+          "type": "brand",
+          "settings": {
+            "brand_name": "BLUE",
+            "brand_class": "blue"
+          }
+        }
+      },
+      "block_order": [
+        "brand_1",
+        "brand_2",
+        "brand_3",
+        "brand_4",
+        "brand_5",
+        "brand_6",
+        "brand_7",
+        "brand_8",
+        "brand_9",
+        "brand_10",
+        "brand_11",
+        "brand_12",
+        "brand_13"
+      ]
+    },
+    "slogan_band": {
+      "type": "slogan-band",
+      "settings": {
+        "slogan_text": "Premium Gaming Gear • Fast Shipping • 24/7 Support"
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Featured Products",
+        "description": "Check out our top gaming gear",
+        "products_to_show": 4,
+        "show_view_all": true
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "brand_carousel",
+    "slogan_band",
+    "featured_collection"
+  ]
+}
