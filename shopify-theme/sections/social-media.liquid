@@ -1,0 +1,323 @@
+{%- comment -%}
+  NXTLVL Gaming - Social Media Section
+{%- endcomment -%}
+
+<section class="social-media-section section-padding">
+  <div class="container">
+    <div class="social-media-content">
+      {%- if section.settings.title != blank -%}
+        <h2 class="social-media-title">{{ section.settings.title }}</h2>
+      {%- endif -%}
+      {%- if section.settings.description != blank -%}
+        <p class="social-media-description">{{ section.settings.description }}</p>
+      {%- endif -%}
+
+      <div class="social-media-links">
+        {%- if section.settings.instagram_url != blank -%}
+          <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener noreferrer" class="social-icon instagram" aria-label="Instagram">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2"/>
+              <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+              <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/>
+            </svg>
+            <span>Instagram</span>
+          </a>
+        {%- endif -%}
+
+        {%- if section.settings.twitter_url != blank -%}
+          <a href="{{ section.settings.twitter_url }}" target="_blank" rel="noopener noreferrer" class="social-icon twitter" aria-label="Twitter">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+            </svg>
+            <span>Twitter</span>
+          </a>
+        {%- endif -%}
+
+        {%- if section.settings.facebook_url != blank -%}
+          <a href="{{ section.settings.facebook_url }}" target="_blank" rel="noopener noreferrer" class="social-icon facebook" aria-label="Facebook">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+            </svg>
+            <span>Facebook</span>
+          </a>
+        {%- endif -%}
+
+        {%- if section.settings.youtube_url != blank -%}
+          <a href="{{ section.settings.youtube_url }}" target="_blank" rel="noopener noreferrer" class="social-icon youtube" aria-label="YouTube">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.33z"/>
+              <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#000"/>
+            </svg>
+            <span>YouTube</span>
+          </a>
+        {%- endif -%}
+
+        {%- if section.settings.tiktok_url != blank -%}
+          <a href="{{ section.settings.tiktok_url }}" target="_blank" rel="noopener noreferrer" class="social-icon tiktok" aria-label="TikTok">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/>
+            </svg>
+            <span>TikTok</span>
+          </a>
+        {%- endif -%}
+
+        {%- if section.settings.discord_url != blank -%}
+          <a href="{{ section.settings.discord_url }}" target="_blank" rel="noopener noreferrer" class="social-icon discord" aria-label="Discord">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+            </svg>
+            <span>Discord</span>
+          </a>
+        {%- endif -%}
+
+        {%- if section.settings.twitch_url != blank -%}
+          <a href="{{ section.settings.twitch_url }}" target="_blank" rel="noopener noreferrer" class="social-icon twitch" aria-label="Twitch">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/>
+            </svg>
+            <span>Twitch</span>
+          </a>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.show_hashtag -%}
+        <p class="social-hashtag">{{ section.settings.hashtag_text }}</p>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<style>
+.social-media-section {
+  padding: 4rem 0;
+  background: linear-gradient(135deg, rgba(0, 255, 133, 0.05), rgba(138, 43, 226, 0.05));
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.social-media-content {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.social-media-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--nx-green);
+  margin-bottom: 1rem;
+}
+
+.social-media-description {
+  font-size: 1.1rem;
+  color: var(--text);
+  margin-bottom: 2rem;
+}
+
+.social-media-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.social-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.3s ease;
+  min-width: 120px;
+}
+
+.social-icon:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.social-icon svg {
+  transition: all 0.3s ease;
+}
+
+.social-icon span {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.social-icon.instagram:hover {
+  border-color: #E1306C;
+  background: linear-gradient(135deg, rgba(131, 58, 180, 0.1), rgba(225, 48, 108, 0.1));
+}
+
+.social-icon.instagram:hover svg {
+  stroke: #E1306C;
+}
+
+.social-icon.twitter:hover {
+  border-color: #1DA1F2;
+  background: rgba(29, 161, 242, 0.1);
+}
+
+.social-icon.twitter:hover svg {
+  fill: #1DA1F2;
+}
+
+.social-icon.facebook:hover {
+  border-color: #4267B2;
+  background: rgba(66, 103, 178, 0.1);
+}
+
+.social-icon.facebook:hover svg {
+  fill: #4267B2;
+}
+
+.social-icon.youtube:hover {
+  border-color: #FF0000;
+  background: rgba(255, 0, 0, 0.1);
+}
+
+.social-icon.youtube:hover svg {
+  fill: #FF0000;
+}
+
+.social-icon.tiktok:hover {
+  border-color: #00f2ea;
+  background: rgba(0, 242, 234, 0.1);
+}
+
+.social-icon.tiktok:hover svg {
+  fill: #00f2ea;
+}
+
+.social-icon.discord:hover {
+  border-color: #5865F2;
+  background: rgba(88, 101, 242, 0.1);
+}
+
+.social-icon.discord:hover svg {
+  fill: #5865F2;
+}
+
+.social-icon.twitch:hover {
+  border-color: #9146FF;
+  background: rgba(145, 70, 255, 0.1);
+}
+
+.social-icon.twitch:hover svg {
+  fill: #9146FF;
+}
+
+.social-hashtag {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--nx-green);
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .social-media-title {
+    font-size: 2rem;
+  }
+  
+  .social-media-links {
+    gap: 1rem;
+  }
+  
+  .social-icon {
+    min-width: 100px;
+    padding: 1rem;
+  }
+  
+  .social-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Social Media",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Join the Gaming Community"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Follow us on social media for the latest gaming news, deals, and community content!"
+    },
+    {
+      "type": "header",
+      "content": "Social Media Links"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "twitter_url",
+      "label": "Twitter URL"
+    },
+    {
+      "type": "url",
+      "id": "facebook_url",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "url",
+      "id": "youtube_url",
+      "label": "YouTube URL"
+    },
+    {
+      "type": "url",
+      "id": "tiktok_url",
+      "label": "TikTok URL"
+    },
+    {
+      "type": "url",
+      "id": "discord_url",
+      "label": "Discord URL"
+    },
+    {
+      "type": "url",
+      "id": "twitch_url",
+      "label": "Twitch URL"
+    },
+    {
+      "type": "header",
+      "content": "Hashtag"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_hashtag",
+      "label": "Show hashtag",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "hashtag_text",
+      "label": "Hashtag",
+      "default": "#NXTLVLGaming"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Social Media"
+    }
+  ]
+}
+{% endschema %}
