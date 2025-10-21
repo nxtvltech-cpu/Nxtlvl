@@ -1,0 +1,59 @@
+{%- comment -%}
+  NXTLVL Gaming - Announcement Bar Section
+{%- endcomment -%}
+
+{%- if section.settings.show_announcement -%}
+  <div class="announcement-bar" style="background-color: {{ section.settings.bg_color }}; color: {{ section.settings.text_color }};">
+    <div class="announcement-bar__content">
+      {%- if section.settings.announcement_text != blank -%}
+        <p>{{ section.settings.announcement_text }}</p>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}
+
+<style>
+.announcement-bar {
+  padding: 0.75rem 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.announcement-bar__content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+</style>
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Show announcement bar",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement text",
+      "default": "Free shipping on orders over $150!"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#00FF85"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#0A0A0A"
+    }
+  ]
+}
+{% endschema %}
