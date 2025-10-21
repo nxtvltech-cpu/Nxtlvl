@@ -1,0 +1,226 @@
+{%- comment -%}
+  NXTLVL Gaming - Brand Carousel Section
+{%- endcomment -%}
+
+<section class="brand-carousel-section">
+  <div class="brand-track">
+    <div class="brand-slide">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'brand' -%}
+            <div class="brand-item {{ block.settings.brand_class }}">
+              {{ block.settings.brand_name }}
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+    {%- comment -%} Duplicate for seamless loop {%- endcomment -%}
+    <div class="brand-slide">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'brand' -%}
+            <div class="brand-item {{ block.settings.brand_class }}">
+              {{ block.settings.brand_name }}
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<style>
+.brand-carousel-section {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 2rem 0;
+  overflow: hidden;
+  position: relative;
+  border-top: 1px solid rgba(0, 255, 133, 0.1);
+  border-bottom: 1px solid rgba(0, 255, 133, 0.1);
+}
+
+.brand-carousel-section::before,
+.brand-carousel-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 150px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.brand-carousel-section::before {
+  left: 0;
+  background: linear-gradient(90deg, rgba(10, 10, 10, 1) 0%, rgba(10, 10, 10, 0) 100%);
+}
+
+.brand-carousel-section::after {
+  right: 0;
+  background: linear-gradient(90deg, rgba(10, 10, 10, 0) 0%, rgba(10, 10, 10, 1) 100%);
+}
+
+.brand-track {
+  display: flex;
+  animation: scroll-brands 40s linear infinite;
+  width: fit-content;
+}
+
+.brand-slide {
+  display: flex;
+  gap: 4rem;
+  padding: 0 2rem;
+  align-items: center;
+}
+
+.brand-item {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  filter: grayscale(100%) opacity(0.5);
+  text-shadow: 0 0 20px transparent;
+}
+
+.brand-item:hover {
+  filter: grayscale(0%) opacity(1);
+  transform: scale(1.1);
+}
+
+/* Brand-specific colors */
+.brand-item.nvidia { color: #76B900; }
+.brand-item.nvidia:hover { text-shadow: 0 0 20px rgba(118, 185, 0, 0.6); }
+
+.brand-item.amd { color: #ED1C24; }
+.brand-item.amd:hover { text-shadow: 0 0 20px rgba(237, 28, 36, 0.6); }
+
+.brand-item.intel { color: #0071C5; }
+.brand-item.intel:hover { text-shadow: 0 0 20px rgba(0, 113, 197, 0.6); }
+
+.brand-item.razer { color: #00FF00; }
+.brand-item.razer:hover { text-shadow: 0 0 20px rgba(0, 255, 0, 0.6); }
+
+.brand-item.logitech { color: #00B8FC; }
+.brand-item.logitech:hover { text-shadow: 0 0 20px rgba(0, 184, 252, 0.6); }
+
+.brand-item.corsair { color: #FFD700; }
+.brand-item.corsair:hover { text-shadow: 0 0 20px rgba(255, 215, 0, 0.6); }
+
+.brand-item.hyperx { color: #FF0000; }
+.brand-item.hyperx:hover { text-shadow: 0 0 20px rgba(255, 0, 0, 0.6); }
+
+.brand-item.steelseries { color: #FF6600; }
+.brand-item.steelseries:hover { text-shadow: 0 0 20px rgba(255, 102, 0, 0.6); }
+
+.brand-item.nzxt { color: #FFFFFF; }
+.brand-item.nzxt:hover { text-shadow: 0 0 20px rgba(255, 255, 255, 0.6); }
+
+.brand-item.coolermaster { color: #8B00FF; }
+.brand-item.coolermaster:hover { text-shadow: 0 0 20px rgba(139, 0, 255, 0.6); }
+
+.brand-item.thermaltake { color: #00D9FF; }
+.brand-item.thermaltake:hover { text-shadow: 0 0 20px rgba(0, 217, 255, 0.6); }
+
+.brand-item.elgato { color: #00FF85; }
+.brand-item.elgato:hover { text-shadow: 0 0 20px rgba(0, 255, 133, 0.6); }
+
+.brand-item.blue { color: #1E90FF; }
+.brand-item.blue:hover { text-shadow: 0 0 20px rgba(30, 144, 255, 0.6); }
+
+@keyframes scroll-brands {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.brand-track:hover {
+  animation-play-state: paused;
+}
+
+@media (max-width: 768px) {
+  .brand-carousel-section {
+    padding: 1.5rem 0;
+  }
+  
+  .brand-carousel-section::before,
+  .brand-carousel-section::after {
+    width: 80px;
+  }
+  
+  .brand-slide {
+    gap: 3rem;
+    padding: 0 1.5rem;
+  }
+  
+  .brand-item {
+    font-size: 1.2rem;
+    letter-spacing: 1.5px;
+  }
+  
+  .brand-track {
+    animation: scroll-brands 30s linear infinite;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Brand Carousel",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "brand",
+      "name": "Brand",
+      "settings": [
+        {
+          "type": "text",
+          "id": "brand_name",
+          "label": "Brand Name",
+          "default": "BRAND NAME"
+        },
+        {
+          "type": "select",
+          "id": "brand_class",
+          "label": "Brand Style",
+          "options": [
+            { "value": "nvidia", "label": "NVIDIA (Green)" },
+            { "value": "amd", "label": "AMD (Red)" },
+            { "value": "intel", "label": "Intel (Blue)" },
+            { "value": "razer", "label": "Razer (Bright Green)" },
+            { "value": "logitech", "label": "Logitech (Sky Blue)" },
+            { "value": "corsair", "label": "Corsair (Gold)" },
+            { "value": "hyperx", "label": "HyperX (Red)" },
+            { "value": "steelseries", "label": "SteelSeries (Orange)" },
+            { "value": "nzxt", "label": "NZXT (White)" },
+            { "value": "coolermaster", "label": "Cooler Master (Purple)" },
+            { "value": "thermaltake", "label": "Thermaltake (Cyan)" },
+            { "value": "elgato", "label": "Elgato (Green)" },
+            { "value": "blue", "label": "Blue (Blue)" }
+          ],
+          "default": "nvidia"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Carousel",
+      "blocks": [
+        { "type": "brand", "settings": { "brand_name": "NVIDIA", "brand_class": "nvidia" } },
+        { "type": "brand", "settings": { "brand_name": "AMD RYZEN", "brand_class": "amd" } },
+        { "type": "brand", "settings": { "brand_name": "INTEL", "brand_class": "intel" } },
+        { "type": "brand", "settings": { "brand_name": "RAZER", "brand_class": "razer" } },
+        { "type": "brand", "settings": { "brand_name": "LOGITECH G", "brand_class": "logitech" } },
+        { "type": "brand", "settings": { "brand_name": "CORSAIR", "brand_class": "corsair" } },
+        { "type": "brand", "settings": { "brand_name": "HYPERX", "brand_class": "hyperx" } },
+        { "type": "brand", "settings": { "brand_name": "STEELSERIES", "brand_class": "steelseries" } },
+        { "type": "brand", "settings": { "brand_name": "NZXT", "brand_class": "nzxt" } },
+        { "type": "brand", "settings": { "brand_name": "COOLER MASTER", "brand_class": "coolermaster" } },
+        { "type": "brand", "settings": { "brand_name": "THERMALTAKE", "brand_class": "thermaltake" } },
+        { "type": "brand", "settings": { "brand_name": "ELGATO", "brand_class": "elgato" } },
+        { "type": "brand", "settings": { "brand_name": "BLUE", "brand_class": "blue" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
