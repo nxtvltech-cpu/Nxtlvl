@@ -1,0 +1,132 @@
+{%- comment -%}
+  NXTLVL Gaming - Newsletter Section
+{%- endcomment -%}
+
+<section class="newsletter-section section-padding">
+  <div class="container">
+    <div class="newsletter-content">
+      {%- if section.settings.title != blank -%}
+        <h2 class="newsletter-title">{{ section.settings.title }}</h2>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <p class="newsletter-text">{{ section.settings.text }}</p>
+      {%- endif -%}
+      
+      {% form 'customer', class: 'newsletter-form' %}
+        {%- if form.posted_successfully? -%}
+          <p class="newsletter-success">Thanks for subscribing!</p>
+        {%- endif -%}
+        
+        <div class="newsletter-form-wrapper">
+          <input
+            type="email"
+            name="contact[email]"
+            class="newsletter-input"
+            placeholder="{{ section.settings.placeholder_text }}"
+            required
+            aria-label="Email address"
+          >
+          <button type="submit" class="btn-primary">{{ section.settings.button_text }}</button>
+        </div>
+        
+        <input type="hidden" name="contact[tags]" value="newsletter">
+      {% endform %}
+    </div>
+  </div>
+</section>
+
+<style>
+.newsletter-section {
+  padding: 4rem 0;
+  background: rgba(0, 255, 133, 0.05);
+}
+
+.newsletter-content {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.newsletter-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--nx-green);
+  margin-bottom: 1rem;
+}
+
+.newsletter-text {
+  font-size: 1.1rem;
+  color: var(--text);
+  margin-bottom: 2rem;
+}
+
+.newsletter-form-wrapper {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.newsletter-input {
+  flex: 1;
+  padding: 1rem;
+  background: var(--bg);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.newsletter-input:focus {
+  outline: none;
+  border-color: var(--nx-green);
+}
+
+.newsletter-success {
+  color: var(--nx-green);
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .newsletter-form-wrapper {
+    flex-direction: column;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Subscribe to our newsletter"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Get the latest gaming news and exclusive deals!"
+    },
+    {
+      "type": "text",
+      "id": "placeholder_text",
+      "label": "Input placeholder",
+      "default": "Enter your email"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Subscribe"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter"
+    }
+  ]
+}
+{% endschema %}
