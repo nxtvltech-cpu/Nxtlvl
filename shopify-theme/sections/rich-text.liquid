@@ -1,0 +1,107 @@
+{%- comment -%}
+  NXTLVL Gaming - Rich Text Section
+{%- endcomment -%}
+
+<section class="rich-text section-padding">
+  <div class="container">
+    <div class="rich-text__content" style="text-align: {{ section.settings.text_alignment }};">
+      {%- if section.settings.title != blank -%}
+        <h2 class="rich-text__title">{{ section.settings.title }}</h2>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <div class="rich-text__text">{{ section.settings.text }}</div>
+      {%- endif -%}
+      {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
+        <a href="{{ section.settings.button_link }}" class="btn-primary">{{ section.settings.button_label }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<style>
+.rich-text {
+  padding: 4rem 0;
+}
+
+.rich-text__content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.rich-text__title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--nx-green);
+  margin-bottom: 1.5rem;
+}
+
+.rich-text__text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text);
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .rich-text__title {
+    font-size: 2rem;
+  }
+  
+  .rich-text__text {
+    font-size: 1rem;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Rich Text",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Rich Text"
+    }
+  ]
+}
+{% endschema %}
