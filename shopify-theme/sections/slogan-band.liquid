@@ -1,0 +1,77 @@
+{%- comment -%}
+  NXTLVL Gaming - Slogan Band Section
+{%- endcomment -%}
+
+<section class="slogan-band">
+  <div class="slogan-content">
+    <p class="slogan-text">{{ section.settings.slogan_text }}</p>
+  </div>
+</section>
+
+<style>
+.slogan-band {
+  background: linear-gradient(135deg, var(--nx-green), var(--nx-purple));
+  padding: 1rem 2rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.slogan-band::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: shine-sweep 3s ease-in-out infinite;
+}
+
+.slogan-content {
+  text-align: center;
+}
+
+.slogan-text {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--bg);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+@keyframes shine-sweep {
+  0% {
+    left: -100%;
+  }
+  50%, 100% {
+    left: 200%;
+  }
+}
+
+@media (max-width: 768px) {
+  .slogan-text {
+    font-size: 1rem;
+    letter-spacing: 1px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Slogan Band",
+  "settings": [
+    {
+      "type": "text",
+      "id": "slogan_text",
+      "label": "Slogan text",
+      "default": "Premium Gaming Gear • Fast Shipping • 24/7 Support"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Slogan Band"
+    }
+  ]
+}
+{% endschema %}
